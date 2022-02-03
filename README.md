@@ -1,6 +1,6 @@
-<p align="center"><a href="https://fundacionmulticredito.com/" target="_blank"><img src="https://fundacionmulticredito.com/wp-content/uploads/elementor/thumbs/cropped-multicredito-oz3uos8hm6es5foln29if5d8s2uezx8fncb89rm8sk.png" width="300"></a></p>
+<p align="center"><a href="https://fundacionmulticredito.com/" target="_blank"><img src="https://fundacionmulticredito.com/wp-content/uploads/elementor/thumbs/cropped-multicredito-oz3uos8hm6es5foln29if5d8s2uezx8fncb89rm8sk.png" width="200"></a></p>
 
-## About Laravel
+## Acerca de Multicredito
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
