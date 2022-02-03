@@ -3,7 +3,7 @@
         <div
             class="p-8 mx-2 my-10 border border-gray-200 rounded-md shadow-lg sm:my-16 sm:mx-auto sm:w-5/12"
         >
-            <form @submit.prevent="hola">
+            <form @submit.prevent="validar">
                 <div class="text-2xl font-semibold text-gray-600">
                     <p>Validar Identidad</p>
                 </div>
@@ -40,7 +40,14 @@ import JetSelectSearch from "@/Components/SelectSearchId2";
 import JetButton from "@/Jetstream/SuccessButton";
 import JetSecondaryButton from "@/Jetstream/SecondaryButton";
 import JetInput from "@/Jetstream/Input";
+import axios from 'axios';
 export default {
+    props:{
+        otpId:{
+            require : true,
+            type : String
+        }
+    },
     components: {
         InfoLayout,
         FormIdentidad,
@@ -50,8 +57,8 @@ export default {
         JetSecondaryButton
     },
     methods: {
-        hola(){
-            alert("hola mundo");
+        validar(){
+            this.$inertia.get("/estado-cuenta/CC1232891346/validacion")
         }
     },
 };

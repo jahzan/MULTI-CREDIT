@@ -10,6 +10,8 @@ use Inertia\Inertia;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
+use MessageBird\Objects\Verify;
+use MessageBird\Client;
 
 class EstadoCuentaController extends Controller
 {
@@ -44,6 +46,10 @@ class EstadoCuentaController extends Controller
      */
     public function showValidation($snId)
     {
+        $sn = SocioDeNegocio::where("numDoc",$snId)->first();
+        if (!$sn) {
+            abort(401);
+        }
         return Inertia::render("EstadoCuenta/ValidateOtp");
     }
 
@@ -54,7 +60,7 @@ class EstadoCuentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function storeValidation()
+    public function storeValidation($snId)
     {
         return Inertia::render("EstadoCuenta/FormIdentidad");
     }

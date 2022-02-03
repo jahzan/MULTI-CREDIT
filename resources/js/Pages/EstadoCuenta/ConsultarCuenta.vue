@@ -3,7 +3,7 @@
         <div
             class="p-8 mx-2 my-10 border border-gray-200 rounded-md shadow-lg sm:my-16 sm:mx-auto sm:w-5/12"
         >
-            <form @submit.prevent="hola">
+            <form @submit.prevent="createValidacion">
                 <div class="text-2xl font-semibold text-gray-600">
                     <p>Consultar Estado de Cuenta</p>
                 </div>
@@ -33,6 +33,7 @@
                         type="text"
                         class="block w-10/12 mt-1 text-gray-500 md:ml-1"
                         autocomplete="id"
+                        v-model="numeroDoc"
                         placeholder="Numero de documento"
                     ></jet-input>
                 </div>
@@ -93,11 +94,12 @@ export default {
 
             ],
             documento: "",
+            numeroDoc: ""
         }
     },
     methods: {
-        hola(){
-            alert("hola mundo");
+        createValidacion(){
+            this.$inertia.get("/estado-cuenta/"+this.documento+this.numeroDoc+"/validacion")
         }
     },
 };
