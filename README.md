@@ -1,4 +1,4 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://fundacionmulticredito.com/" target="_blank"><img src="https://fundacionmulticredito.com/wp-content/uploads/elementor/thumbs/cropped-multicredito-oz3uos8hm6es5foln29if5d8s2uezx8fncb89rm8sk.png" width="400"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
