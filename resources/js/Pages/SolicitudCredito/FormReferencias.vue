@@ -42,7 +42,7 @@
 
 
 
-            
+
           </div>
                       <!-- boton agregar -->
             <div class="col-span-6 sm:col-span-4 md:flex">
@@ -53,7 +53,7 @@
                 </jet-success-button>
             </div>
             </div>
-          
+
           <!-- Lista de de referencias -->
           <div class="col-span-6 sm:col-span-4">
             <!-- This example requires Tailwind CSS v2.0+ -->
@@ -73,12 +73,12 @@
                         </tr>
                       </thead>
                       <tbody class="bg-white divide-y divide-gray-200">
-                        <tr v-for="referencia in referencias">
+                        <tr v-for="referencia in referencias" :key="referencia.id">
                           <td  class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                               <div class="">
                                 <div class="text-sm font-medium text-gray-900">
-                                  {{referencia.name}} 
+                                  {{referencia.name}}
                                 </div>
                               </div>
                             </div>
@@ -101,7 +101,7 @@
                     </table>
             </div>
           </div>
-          
+
 
 
         </template>
@@ -215,13 +215,14 @@ import JetActionMessage from "@/Jetstream/ActionMessage";
                   onSuccess: (page) => {
                     this.$loading(false);
                     this.$swal("Solicitud Realizada!", "Tu solicitud esta siendo evaluada", "success");
-                    
+                    this.$inertia.get(this.route("solicitud.create"));
+
                   },
                   onError: (errors) => {},
                 }
               );
             }
-            
+
         },
     }
 

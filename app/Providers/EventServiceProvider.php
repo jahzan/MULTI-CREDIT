@@ -4,12 +4,14 @@ namespace App\Providers;
 
 use App\Events\BeforeCreateSolicitud;
 use App\Events\CreateVerifyOtp;
+use App\Events\VerifyOtpSened;
 use App\Events\BeforeCreateDesembolso;
 use App\Events\AfterCreateSolicitud;
 use App\Events\AfterCreateStore;
 use App\Events\CreateDirUnique as CreateDirUniqueEvent;
 use App\Listeners\SignDocument;
-use App\Listeners\SignDocument2;
+use App\Listeners\EviarOtp;
+use App\Listeners\VerificarOtp;
 use App\Listeners\CreateUser;
 use App\Listeners\CreateDirUnique as CreateDirUniqueListener;
 use App\Listeners\SendDocuments;
@@ -39,8 +41,11 @@ class EventServiceProvider extends ServiceProvider
             SignDocument::class,
         ],
         CreateVerifyOtp::class =>[
-            SignDocument2::class,
+            EviarOtp::class,
         ],
+        VerifyOtpSened::class => [
+            VerificarOtp::class,
+        ]
 
     ];
 

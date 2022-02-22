@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Events\AfterCreateSolicitud;
 use App\Events\BeforeCreateSolicitud;
-use App\Events\SendOtpVerify;
+use App\Events\CreateVerifyOtp;
+use App\Events\VerifyOtpSened;
 use App\Models\Solicitud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use App\Models\Ciudad;
@@ -22,9 +22,9 @@ use App\Models\SocioDeNegocio;
 use App\Models\SolicitudEstado;
 use App\Models\Store;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use MessageBird\Objects\Verify;
-use MessageBird\Client;
 
 
 class SolicitudController extends Controller
@@ -95,11 +95,11 @@ class SolicitudController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * 
-     * 
+     *
+     *
      * Funcion para guardar datos en la base de datos.
-     * 
-     * 
+     *
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -119,9 +119,8 @@ class SolicitudController extends Controller
             'otpId'                         => 'required',
             'otpToken'                      => 'required',
         ]);
-        /**
-         * Datos para crear el hash y los datos para la firma electronica
-         */
+
+        //Datos para crear el hash y los datos para la firma electronica
         $datos = 'Datos personales Nombre ' .
             $request->nombre .
             ', Apellido ' .
@@ -175,12 +174,8 @@ class SolicitudController extends Controller
                                Boulevard Santander # 16 – 03 de Bucaramanga; con Correo electrónico: notificacines@multicredito.com teléfono: (7) 6711707. La
         política para tratamiento de datos personales se encuentra publicada en la página web www.fundacionmulticredito.com';
 
-
         //se comenta el codigo de verificacion de de otp
-
-        // $client = new Client(config('messagebird.key'));
-        // $result = $client->verify->verify($request['otpId'], $request['otpToken']);
-        // if($result->getStatus() === Verify::STATUS_VERIFIED){
+        //$verifed = event(new VerifyOtpSened($request["otpId"],$request["otpToken"]));
          if(true){
             $solicitud = new Solicitud([// se crea un parametro del modelo para pasar para el evento BeforeCreateSolicitud.
                 'nombre'               => $request->nombre,
@@ -202,17 +197,46 @@ class SolicitudController extends Controller
             $signDocument->solicitud_id = $solicitud->id;
             $signDocument->save();
             event(new AfterCreateSolicitud($solicitud,$signDocument->pathDocument));
+            try {
+                $prospecta = Http::post("http://localhost:62251/api/Prospecta",[
+                    "code"   => "3058",
+                    "id"     => $request->numeroDeDocumento,
+                    "typId"  => config("documento." . $request->tipoDoc),
+                    "password" => "Ja-458",
+                    "user"     => "532662"
+                ])->json();
+            } catch (\Throwable $th) {
+                Log::error($th);
+                abort(502);
+            }
+            if ($prospecta["inconsistenciasField"]) {
+                //resultado si en la consulta es errada
+                return redirect()->back()->withErrors([
+                    "message"       => "No se pudo Realizar",
+                    "description"   => "Revisa la informacion suministrada y vuelve a intentar",
+                    "type"          => "warning"
+                ])->withInput();
+            }
+            else if($prospecta["resultadoField"]==="No Elegible" || $prospecta["resultadoField"]==="Sin Información"){
+                return redirect()->back()->withErrors([
+                    "message"       => "Solicitud Rechazada",
+                    "description"   => "No fue posible otorgarte tu crédito. Esperamos atenderte en otra ocasion.",
+                    "type"          => "error"
+                    ])->withInput();
+            }
+
+
             return Redirect::route('socioeconomico.index',['id_solicitud'=>$solicitud->id]);
         }
     }
 
     /**
      * sendOtp a newly created resource in storage.
-     * 
-     * 
+     *
+     *
      * Funcion para enviar el codigo otp.
-     * 
-     * 
+     *
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -231,21 +255,9 @@ class SolicitudController extends Controller
             'tipoDoc'                       => 'required',           // campo requerido
         ]);
 
-        // proecesos de crear el verify el cual es el encargado de enviar el otp
-
-        // $verify = new Verify(); // crea objeto de tipo verify
-        // $verify->originator = 'Multicredit';// se establece el que origina el mensaje de datos
-        // $verify->recipient = '57'.$request->telefono;// se estabelece la ubicacion del telefono 57 para celular colombiano
-        // $verify->template = "El código de verificación de Fundación Multicredito es %token, al dar este código
-        // se aceptan términos y condiciones";//se establece el mensaje aa ser enviado
-        // $client = new Client(config('messagebird.key'));// se crea una intancia del cliente el cual es comunica con messagebird y se le pasa la verificacion de identidad que son key entregadas.
-        // $verify->type = "sms";// se le establece el medio por el cual se va enviar los datos se establece sms
-        // $result=$client->verify->create($verify,['timeout' => 600,]);//al cliente se le envia el objeto ya parametrisado de verify el cual es el utilizado para hacer la verificacion otp
-        // $otpId = $result->getId();//se obtiene el id del objeto creado 
-
-        $template = "El código de verificación de Fundación Multicredito es %token, al dar este código se aceptan términos y condiciones";//se establece el mensaje aa ser enviado
-        $otpId = event(new SendOtpVerify($request->telefono,$template));
-        dd($otpId);
+        $template = "El código de verificación de Fundación Multicredito es %token, al dar este código se aceptan terminos y condiciones";//se establece el mensaje aa ser enviado
+        //$otpId = event(new CreateVerifyOtp($template,$request->telefono));
+        $otpId="10f3537e2d86475597ae9af312b6d054";
         return Redirect::route('solicitud.create', ['otpId' => $otpId]); // se le indica que se seguira con la vista de index pero se le pasara el id, del objeto creado
 
     }

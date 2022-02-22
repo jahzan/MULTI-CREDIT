@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="flex bg-white border-b border-gray-200 sm:px-10">
-      <div>
+      <div class="hidden sm:flex">
         <jet-application-logo class="block float-left w-auto px-10" />
       </div>
       <div
-        class="my-auto text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-l via-orange-600 from-orange-500 to-blue-600"
+        class="py-3 mx-auto my-auto text-3xl font-extrabold text-center text-transparent sm:py-0 sm:mx-0 sm:text-left sm:text-6xl bg-clip-text bg-gradient-to-l via-orange-600 from-orange-500 to-blue-600"
       >
         Bienvenido a Multicredito!
       </div>
     </div>
-    
+
     <div class="grid grid-cols-1 bg-gray-200 bg-opacity-20 md:grid-cols-2">
       <!-- almacenes -->
       <div class="p-6 border-gray-200" v-if="this.$inertia.page.props.permissions.almacenes">
@@ -56,14 +56,14 @@
           <i class="w-8 h-8 text-gray-400 fas fa-file-alt fa-fw"></i>
           <div class="ml-4 text-lg font-semibold leading-7 text-gray-600">
             <jet-nav-link :href="route('solicitud.create')">
-                Solicitar
+                Solicitar Credito
             </jet-nav-link>
           </div>
         </div>
 
         <div class="ml-12">
           <div class="mt-2 text-sm text-gray-500">
-            Solicita un credito llenando el sieguiente formulario con siguiente  
+            Solicita un credito llenando el sieguiente formulario con siguiente
           </div>
 
           <div class="flex items-center mt-3 font-semibold">
@@ -203,7 +203,7 @@
           </div>
         </div>
       </div><!-- Gestionar Usuarios -->
-      
+
       <!-- Gestionar Roles y Permisos -->
       <div class="p-6 border border-b border-r border-gray-200" v-if="this.$inertia.page.props.permissions.role">
         <div class="flex items-center">

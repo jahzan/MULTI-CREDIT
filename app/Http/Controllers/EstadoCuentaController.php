@@ -38,7 +38,7 @@ class EstadoCuentaController extends Controller
     }
 
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -48,13 +48,15 @@ class EstadoCuentaController extends Controller
     {
         $sn = SocioDeNegocio::where("numDoc",$snId)->first();
         if (!$sn) {
-            abort(401);
+            return redirect()->back()->withErrors(["message"=>"no se ecuentra usuario registrado"])->withInput();
         }
-        return Inertia::render("EstadoCuenta/ValidateOtp");
+        return Inertia::render("EstadoCuenta/ValidateOtp",[
+            "sn" => $sn
+        ]);
     }
 
 
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -105,7 +107,7 @@ class EstadoCuentaController extends Controller
         //return Redirect::route('solicitud.create', ['otpId' => $otpId]); // se le indica que se seguira con la vista de index pero se le pasara el id, del objeto creado
     }
 
-    
+
     /**
      * SendOtp a newly created resource in storage.
      *
@@ -117,7 +119,7 @@ class EstadoCuentaController extends Controller
         $validacion = OtpValidation::where('socio_de_negocio_id','=',$request->id)->where('channel','=',$request->channel)->first();
 
     }
-    
+
 
 
     /**

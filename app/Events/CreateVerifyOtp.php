@@ -12,16 +12,20 @@ use Illuminate\Queue\SerializesModels;
 
 class CreateVerifyOtp
 {
+    public $template ="";
+    public $telefono ="";
     use Dispatchable, InteractsWithSockets, SerializesModels;
+
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($template, $telefono)
     {
-        //
+        $this->template = $template;
+        $this->telefono = $telefono;
     }
 
     /**

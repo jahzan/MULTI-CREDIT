@@ -2,7 +2,6 @@
 
 namespace App\Events;
 
-use App\Models\Solicitud;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -11,13 +10,12 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class SendOtpVerify
+class VerifyOtpSened
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    
-    
-    public $telefono;
-    public $template;
+
+    public $otpId = "";
+    public $otpToken = "";
 
 
     /**
@@ -25,11 +23,10 @@ class SendOtpVerify
      *
      * @return void
      */
-    public function __construct($telefono, $template)
+    public function __construct($otpId, $otpToken)
     {
-        $this->telefono = $telefono;
-        $this->template = $template;
-        //
+        $this->$otpId = $otpId;
+        $this->$otpToken = $otpToken;
     }
 
     /**

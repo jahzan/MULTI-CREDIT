@@ -87,7 +87,6 @@
                 type="text"
                 v-model="CreateSolicitudForm.nombre"
                 class="block w-full mt-1"
-                autocomplete="name"
               />
               <jet-input-error
                 :message="CreateSolicitudForm.errors.nombre"
@@ -150,7 +149,6 @@
                 id="email"
                 type="email"
                 class="block w-full mt-1"
-                autocomplete="email"
                 v-model="CreateSolicitudForm.email"
               />
               <jet-input-error :message="CreateSolicitudForm.errors.email" class="mt-2" />
@@ -177,8 +175,8 @@
         <template #actions>
           <jet-action-message class="mr-3"> Guardado </jet-action-message>
           <div class="flex w-full">
-            <!-- <button 
-              v-on:click="prev" 
+            <!-- <button
+              v-on:click="prev"
               class="items-center flex-none px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray">
               ..Anterior
             </button> -->
@@ -191,7 +189,7 @@
             </button>
           </div>
         </template>
-        
+
       </jet-form-section><!-- Fin formulario Autorizacion -->
 
 
@@ -231,8 +229,8 @@
             Reenviar
           </jet-secondary-button>
 
-          <jet-button class="ml-2" @click.native="verifcarOtp"> 
-            Verificar 
+          <jet-button class="ml-2" @click.native="verifcarOtp">
+            Verificar
           </jet-button>
 
         </template>
@@ -277,7 +275,7 @@ export default {
     JetSuccessButton,
     JetSelectSearch,
   },
-  props:['otpId','ciudades','departamentos'],
+  props:['otpId'],
   data() {
     return {
       CreateSolicitudForm: this.$inertia.form({
@@ -294,41 +292,8 @@ export default {
         otpToken            : null,
         _token              : this.$page.props.csrf_token,
       }),
-      CreateSocioeconimicoForm: this.$inertia.form({
-        estadoCivil         : null,
-        personasCargo       : null,
-        sexo                : null,
-        tipoVivienda        : null,
-        departamento        : null,
-        ciudad              : null,
-        direccion           : null,
-        nivelAcademico      : null,
-        estadoLaboral       : null,
-        pensionado          : null,
-        empresaLabora       : null,
-        telEmpresa          : null,
-        dirEmpresa          : null,
-        ingresos            : null,
-        otrosIngresos       : null,
-        gastos              : null,
-        idSolicitud         : this.otpId
-      }),
-      CreateDepartamentoForm: this.$inertia.form({
-        name                : null,
-        id                  : null,
-      }),
-      CreateReferenciaForm:this.$inertia.form({
-        name                : null,
-        phone               : null,
-        idSolicitud         : this.otpId
-
-      }),
-      ciudad: null,
-      referencias: Array(),
-      departamento:null,
       activeModal: false,
       width: "2xl",
-      paginate: 0,
       documentosId:[
           {
               id: "CC",
@@ -355,7 +320,6 @@ export default {
               name: "Carnet Diplomatico"
           }
       ],
-      tiposDoc : ['CC','CE','PA','TI','RC','CD'],
     };
   },
   methods: {
@@ -400,34 +364,6 @@ export default {
     },
 
     verifcarOtp() {
-      // this.$loading(true);
-      // axios.post(route("solicitud.store"),{
-      //   nombre              :  this.CreateSolicitudForm.nombre,
-      //   apellido            :  this.CreateSolicitudForm.apellido,
-      //   numeroDeDocumento   :  this.CreateSolicitudForm.numeroDeDocumento,
-      //   fechaExpedicion     :  this.CreateSolicitudForm.fechaExpedicion,
-      //   fechaNacimiento     :  this.CreateSolicitudForm.fechaNacimiento,
-      //   telefono            :  this.CreateSolicitudForm.telefono,
-      //   email               :  this.CreateSolicitudForm.email,
-      //   monto               :  this.CreateSolicitudForm.monto,
-      //   tipoDoc             :  this.CreateSolicitudForm.tipoDoc,
-      //   tipoDoc             :  this.CreateSolicitudForm.tipoDoc,
-      //   otpId               :  this.CreateSolicitudForm.otpId,
-      //   otpToken            :  this.CreateSolicitudForm.otpToken,
-      // },{
-
-      // })
-      // .then(res => {
-      //   this.createSolicitud();
-      //   this.$loading(false);
-      //   this.closeModalOtp();
-      // })
-      // .catch(err => {
-      //   console.log("holamundo");
-      //   console.error(err);
-      //   this.$loading(false);
-      // });
-    
       this.CreateSolicitudForm.post(
         route("solicitud.store"), {
           errorBag: null,
@@ -441,12 +377,17 @@ export default {
             this.$swal("Realizado con Exito!", "Continua con la informacion socioeconomica", "success");
           },
           onError: () => {
+            this.activeModal = false;
             this.$loading(false);
+            this.$swal(this.$inertia.page.props.errors.message, this.$inertia.page.props.errors.description, this.$inertia.page.props.errors.type);
+            if(this.$inertia.page.props.errors.type === "error"){
+                this.CreateSolicitudForm.reset();
+            }
             console.error(this.CreateSolicitudForm.errors);
           },
         }
       );
-    
+
     },
 
     createSolicitud() {
@@ -469,11 +410,6 @@ export default {
         }
       );
     },
-
-
-
-
-
   },
 };
 </script>

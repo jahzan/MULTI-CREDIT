@@ -4,7 +4,7 @@
         <div class="relative bg-white">
             <div class="max-w-full mx-auto">
                 <div
-                    class="flex items-center justify-between px-4 py-1 border-b-2 border-gray-100 sm:px-6 md:justify-start md:space-x-10"
+                    class="flex items-center justify-between px-4 py-0 border-b-2 border-gray-100 sm:py-1 sm:px-6 md:justify-start md:space-x-10"
                 >
                     <div class="flex justify-start lg:w-0 lg:flex-1">
                         <a href="#">
@@ -15,7 +15,7 @@
                                 class="block w-auto h-14"
                             />
                         </a>
-                        <div class="flex items-center h-16">
+                        <div class="flex items-center h-10 sm:h-16">
                             <div
                                 class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex"
                             >
@@ -34,9 +34,9 @@
         <div class="min-h-96">
             <slot></slot>
         </div>
-        <div class="flex h-auto px-2 py-10 sm:px-28">
+        <div class="flex h-auto px-2 py-1 sm:px-28">
             <div class="h-full">
-                <a class="text-indigo-700" href="https:\\www.fundacionmulticredito.com">Volver a la pagina</a>
+                <a class="text-sm text-indigo-700" href="https:\\www.fundacionmulticredito.com">Volver a la pagina</a>
             </div>
         </div>
     </div>

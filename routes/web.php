@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use MessageBird\Client;
 use MessageBird\Objects\Verify;
+use CodeDredd\Soap\Facades\Soap;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,30 +40,30 @@ use MessageBird\Objects\Verify;
     //ruta para procesar datos del formulario cambio de la contraseña.
     Route::post('/password-reset/{id}/{hash}','App\Http\Controllers\AssingPassword@changePassword')->middleware(['password-reset'])->name('password.update');
 
-    //rutas recource para las gestion de almacenes. 
+    //rutas recource para las gestion de almacenes.
     Route::resource('/almacen', 'App\Http\Controllers\StoreController')->middleware(['auth:sanctum', 'verified','permission:almacenes']);
 
-     //rutas recource para las crear el socioeconomico de la solicitud de credito. 
+     //rutas recource para las crear el socioeconomico de la solicitud de credito.
      //Route::resource('/solicitud/socioeconomico', 'App\Http\Controllers\SocioEconomicoController')->middleware(['auth:sanctum', 'verified']);
 
-     //rutas recource para las crear las referencias de la solicitud de credito. 
+     //rutas recource para las crear las referencias de la solicitud de credito.
      Route::resource('/solicitud/referencia', 'App\Http\Controllers\ReferenciaController')->middleware(['auth:sanctum', 'verified']);
 
-     //rutas recource para las crear las referencias de la solicitud de credito. 
+     //rutas recource para las crear las referencias de la solicitud de credito.
      Route::resource('/solicitud/socioeconomico', 'App\Http\Controllers\SocioEconomicoController')->middleware(['auth:sanctum', 'verified']);
-    
-    //rutas recource para las crear la solicitud de credito. 
+
+    //rutas recource para las crear la solicitud de credito.
     Route::resource('/solicitud', 'App\Http\Controllers\SolicitudController')->middleware(['auth:sanctum', 'verified']);
 
-    //rutas recource para las gestion de Usuarios. 
+    //rutas recource para las gestion de Usuarios.
     Route::resource('/user', 'App\Http\Controllers\UserController')->middleware(['auth:sanctum', 'verified']);
-   
+
     //ruta de la pagian dasboarh que es la misma rais
     Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
        return Inertia::render('Dashboard');
     });
 
-    //ruta de la rais 
+    //ruta de la rais
     Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
         return Inertia::render('Dashboard');
      })->name("dashboard");
@@ -68,9 +71,9 @@ use MessageBird\Objects\Verify;
      //rutas resource para la solicitudes de tranferencias
      Route::resource('transferencia', "App\Http\Controllers\SolicitudTransferenciaController")->middleware(['auth:sanctum', 'verified']);
 
-     //Ruta get para mostrar formulario de Gestion de Roles  
+     //Ruta get para mostrar formulario de Gestion de Roles
      Route::get('roles-permisos', 'App\Http\Controllers\RolesAndPermissionController@permisosRole')->middleware(['auth:sanctum', 'verified','permission:role'])->name('roles-permisos');
-     
+
      //Ruta post para mostrar formulario de Gestion de Roles
      Route::post('roles-permisos','App\Http\Controllers\RolesAndPermissionController@permisosRoleStore')->middleware(['auth:sanctum', 'verified','permission:role'])->name('post-permisos');
 
@@ -93,9 +96,9 @@ use MessageBird\Objects\Verify;
      //Route::post('socio-economico\create', 'App\Http\Controllers\SolicitudController@createSocioEco')->middleware(['auth:sanctum', 'verified','role:store.user|store.admin'])->name('socioEconomico.create');
 
      Route::get("estado-cuenta","App\Http\Controllers\EstadoCuentaController@index")->name("index");
-     Route::get("estado-cuenta/{snId}","App\Http\Controllers\EstadoCuentaController@createValidation")->name("validation.create");
+     Route::post("estado-cuenta/{snId}","App\Http\Controllers\EstadoCuentaController@createValidation")->name("validation.create");
      Route::get("estado-cuenta/{snId}/validacion","App\Http\Controllers\EstadoCuentaController@showValidation")->name("validation.show");
-     
+
  Route::post("estado-cuenta/create-validate","App\Http\Controllers\EstadoCuentaController@sendOtp")->name("create-validate");
  Route::get("estado-cuenta/validate","App\Http\Controllers\EstadoCuentaController@validateOtpPost")->name("form-validate");
  Route::get("estado-cuenta/validate","App\Http\Controllers\EstadoCuentaController@validateOtpPost")->name("validate");
@@ -116,35 +119,80 @@ Route::get('/hola', function () {
    return  'Doc.contrato';
 });
  Route::get('/terminos', function () {
-//  return PDF::loadView('Doc.socioEconomico')->stream('archivo.pdf');
-//    $dompdf = new Dompdf();
-//    $dompdf->loadHtml('hello world');
-//    $dompdf->setPaper('A4', 'landscape');
 
-// // Render the HTML as PDF
-// $dompdf->render();
 
-// // Output the generated PDF to Browser
-// $dompdf->stream();
-  $id=2;
-  $solicitud_id=1;
-  $referencias = Referencia::where('solicitud_id',3)->get();
-  $referencia=Referencia::find($id);
-  $Solicitud = Solicitud::find(1);
-//$SocioEconimico = SocioEconimico::find($id);
-//dd($SocioEconimico);
-// return PDF::loadView('Doc.ReferenciasPersonales', ['referencias' => $referencias])->stream('archivo.pdf');
- //return PDF::loadView('Doc.ReferenciasPersonales', $referencia)->stream('archivo.pdf');
- //return PDF::loadView('Doc.autorizacion', $Solicitud)->stream('archivo.pdf');
- return PDF::loadView('Doc.Pagare', $Solicitud)->stream('archivo.pdf');
- //return PDF::loadView('Doc.contratomutuo', $Solicitud)->stream('archivo.pdf');
- //return PDF::loadView('Doc.solicitud', $Solicitud)->stream('archivo.pdf');
- //return PDF::loadView('Doc.socioEconomico', $SocioEconimico)->stream('archivo.pdf');
-//$data ->save(storage_path('app\\'.$solicitud->path_solicitud) . 'Autorizacion.pdf'); // guardar en una ruta del servidor
-//dd($solicitud);
- //return PDF::loadView('Doc.solicitud',$solicitud)->setPaper('A4', 'portrait')->stream('archivo.pdf');
+try {
+    $respuesta = Http::post("http://localhost:62251/api/Prospecta",[
+        "code" => "3058",
+        "id"   => "93061112",
+        "typId" => "1",
+    ]);
 
- 
+    dd($respuesta->json());
+} catch (\Throwable $th) {
+    Log::error($th);
+    return abort(502);
+}
+
+
+
+
+
+
+   /**Pruebas con WS SOAP
+             // phpinfo();
+            //https://miportafoliouat.transunion.co/ProspectaPlusWebService/services/ProspectaPlus?wsdl
+            // $wsdl = file_get_contents('https://miportafoliouat.transunion.co/ProspectaPlusWebService/services/ProspectaPlus?wsdl');
+            // dd($wsdl);
+            //    $wsdl = 'https://miportafoliouat.transunion.co/ProspectaPlusWebService/services/ProspectaPlus?wsdl';
+            //    $options = array(
+            //       'login' => '532662',
+            //       'password' => 'Ja-458',
+            //   );
+            //   $client = new SoapClient($wsdl, $options);
+
+            //   $response = Soap::baseWsdl('https://miportafoliouat.transunion.co/ProspectaPlusWebService/services/ProspectaPlus?wsdl')
+            //   ->withOptions([
+            //      'login' => '532661',
+            //      'password' => 'Ja-458',
+            //    ]);
+            //    dd($client);
+            //    ->withWsse([
+            //       'userTokenName' => '532662',
+            //       'userTokenPassword' => 'Ja-458',
+            //    ]);
+            // dd($response);
+
+
+            //  return PDF::loadView('Doc.socioEconomico')->stream('archivo.pdf');
+            //    $dompdf = new Dompdf();
+            //    $dompdf->loadHtml('hello world');
+            //    $dompdf->setPaper('A4', 'landscape');
+
+            // // Render the HTML as PDF
+            // $dompdf->render();
+
+            // // Output the generated PDF to Browser
+            // $dompdf->stream();
+            //   $id=2;
+            //   $solicitud_id=1;
+            //   $referencias = Referencia::where('solicitud_id',3)->get();
+            //   $referencia=Referencia::find($id);
+            //   $Solicitud = Solicitud::find(1);
+            //$SocioEconimico = SocioEconimico::find($id);
+            //dd($SocioEconimico);
+            // return PDF::loadView('Doc.ReferenciasPersonales', ['referencias' => $referencias])->stream('archivo.pdf');
+            //return PDF::loadView('Doc.ReferenciasPersonales', $referencia)->stream('archivo.pdf');
+            //return PDF::loadView('Doc.autorizacion', $Solicitud)->stream('archivo.pdf');
+            //  return PDF::loadView('Doc.Pagare', $Solicitud)->stream('archivo.pdf');
+            //return PDF::loadView('Doc.contratomutuo', $Solicitud)->stream('archivo.pdf');
+            //return PDF::loadView('Doc.solicitud', $Solicitud)->stream('archivo.pdf');
+            //return PDF::loadView('Doc.socioEconomico', $SocioEconimico)->stream('archivo.pdf');
+            //$data ->save(storage_path('app\\'.$solicitud->path_solicitud) . 'Autorizacion.pdf'); // guardar en una ruta del servidor
+            //dd($solicitud);
+            //return PDF::loadView('Doc.solicitud',$solicitud)->setPaper('A4', 'portrait')->stream('archivo.pdf');
+    */
+
  })->name('terminos');
 
 
@@ -162,7 +210,7 @@ Route::get('/hola', function () {
 
 // Route::get('check-notificacion', function () {
 //    dd( Auth::user()->unreadNotifications->markAsRead());
-   
+
 // });
 
 
@@ -2646,10 +2694,10 @@ Route::get('/hola', function () {
 
  Route::get('validarp/', function () {
     $verifyId = 'e7a46a92f5914ba8957823f59dcea9d8';
-        
+
     $client = new Client(config('messagebird.key'));
     $result = $client->verify->verify($verifyId, '097225');
-    
+
     dd($result);
  });
 

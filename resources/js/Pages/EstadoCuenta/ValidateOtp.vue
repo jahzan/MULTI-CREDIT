@@ -46,6 +46,10 @@ export default {
         otpId:{
             require : true,
             type : String
+        },
+        sn:{
+            require : true,
+            type : String
         }
     },
     components: {
@@ -58,7 +62,7 @@ export default {
     },
     methods: {
         validar(){
-            this.$inertia.get("/estado-cuenta/CC1232891346/validacion")
+            this.$inertia.post("/estado-cuenta/"+this.sn)
         }
     },
 };

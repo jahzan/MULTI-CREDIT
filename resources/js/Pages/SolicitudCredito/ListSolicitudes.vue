@@ -44,58 +44,58 @@
           class="overflow-hidden overflow-x-auto border rounded rounded-b-none"
         >
           <table
-            class="min-w-full overflow-hidden bg-white border border-gray-200 divide-y rounded-md rounded-b-none"
+            class="min-w-full overflow-hidden bg-white border border-gray-200 divide-y rounded-md rounded-b-none "
           >
             <thead class="bg-gray-50">
               <tr>
                 <th
                   scope="col"
-                  class="w-8 px-6 py-3 font-serif text-sm font-medium font-extrabold tracking-wider text-left text-gray-500 uppercase"
+                  class="w-8 px-6 py-3 font-serif text-sm font-medium font-extrabold tracking-wider text-left text-gray-500 uppercase "
                 >
                   #
                 </th>
                 <th
                   scope="col"
-                  class="w-10 px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase"
+                  class="w-10 px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase "
                 >
                   Cedula
                 </th>
                 <th
                   scope="col"
-                  class="px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase"
+                  class="px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase "
                 >
                   Nombre
                 </th>
                 <th
                   scope="col"
-                  class="px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase"
+                  class="px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase "
                 >
                   Monto
                 </th>
                 <th
                   scope="col"
-                  class="px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase"
+                  class="px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase "
                 >
                   Fecha
                 </th>
 
                 <th
                   scope="col"
-                  class="px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-center text-gray-500 uppercase"
+                  class="px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-center text-gray-500 uppercase "
                 >
                   Hora
                 </th>
 
                 <th
                   scope="col"
-                  class="px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase"
+                  class="px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase "
                 >
                   Estado
                 </th>
 
                 <th
                   scope="col"
-                  class="w-10 px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase"
+                  class="w-10 px-6 py-3 font-serif text-sm font-medium tracking-wider text-left text-gray-500 uppercase "
                 >
                   <div class="px-4 md:flex sm:items-center">
                     <!-- Settings Dropdown -->
@@ -106,7 +106,13 @@
                             class="flex items-center py-2 my-auto text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300"
                           >
                             <i
-                              class="<i fas fa-filter fa-lg text-gray-500 my-auto"
+                              class="
+                                <i
+                                fas
+                                fa-filter fa-lg
+                                text-gray-500
+                                my-auto
+                              "
                             />
                           </button>
                         </template>
@@ -306,34 +312,34 @@
                   <div class="items-center w-full">
                     <span
                       v-if="solicitud.solicitud_estado_id == 3"
-                      class="inline-flex px-1 text-xs font-semibold leading-5 text-green-900 bg-green-200 rounded-full"
+                      class="inline-flex px-1 text-xs font-semibold leading-5 text-green-900 bg-green-200 rounded-full "
                     >
                       Aprobado
                     </span>
 
                     <span
                       v-if="solicitud.solicitud_estado_id == 1"
-                      class="inline-flex px-1 text-xs font-semibold leading-5 text-blue-900 bg-blue-200 rounded-full"
+                      class="inline-flex px-1 text-xs font-semibold leading-5 text-blue-900 bg-blue-200 rounded-full "
                     >
                       Pendiente
                     </span>
 
                     <span
                       v-if="solicitud.solicitud_estado_id == 7"
-                      class="inline-flex px-1 text-xs font-semibold leading-5 text-blue-900 bg-blue-200 rounded-full"
+                      class="inline-flex px-1 text-xs font-semibold leading-5 text-blue-900 bg-blue-200 rounded-full "
                     >
                       Pre-Pendiente
                     </span>
 
                     <span
                       v-if="solicitud.solicitud_estado_id == 2"
-                      class="inline-flex px-1 text-xs font-semibold leading-5 text-gray-900 bg-gray-200 rounded-full"
+                      class="inline-flex px-1 text-xs font-semibold leading-5 text-gray-900 bg-gray-200 rounded-full "
                     >
                       Finalizado
                     </span>
                     <span
                       v-if="solicitud.solicitud_estado_id == 4"
-                      class="inline-flex px-1 text-xs font-semibold leading-5 text-red-900 bg-red-200 rounded-full"
+                      class="inline-flex px-1 text-xs font-semibold leading-5 text-red-900 bg-red-200 rounded-full "
                     >
                       Rechazado
                     </span>
@@ -377,7 +383,8 @@
             :keyword="keyword"
           />
         </div>
-      </div><!-- //Seccion de la Listado Table -->
+      </div>
+      <!-- //Seccion de la Listado Table -->
 
       <!-- modal mostrar solicitud -->
       <jet-dialog-modal
@@ -395,16 +402,9 @@
           ></vue-pdf-app>
         </template>
 
-        <template
-          #footer
-          v-if="
-            this.$inertia.page.props.roles.store_user ||
-            this.$inertia.page.props.roles.store_admin
-          "
-        >
+        <template #footer>
           <!-- Contenedor del usuario que va tener el rol de asesor de credito -->
           <div class="sm:flex">
-
             <div class="sm:flex-grow sm:flex-wrap sm:place-items-center">
               <jet-secondary-button
                 class="w-full sm:float-left sm:my-2 sm:w-auto"
@@ -418,18 +418,42 @@
             </div>
 
             <div class="flex sm:items-center">
+                <!-- boton rechazar -->
+              <jet-danger-button
+                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                @click.native="showModalResponseSolicitud(4)"
+                v-if="$inertia.page.props.permissions.solicitud_rechazar"
+              >
+                <span>
+                  <i class="fas fa-times fa-lg"></i>
+                  Rechazar
+                </span>
+              </jet-danger-button>
+                <!-- boton aprobar -->
+              <jet-success-button
+                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                @click.native="showModalResponseSolicitud(3)"
+                v-if="$inertia.page.props.permissions.solicitud_aprobar"
+              >
+                <span class="text-base">
+                  <i class="fas fa-check"></i>
+                  Aprobar
+                </span>
+              </jet-success-button>
+                <!-- Boton Anular -->
               <jet-warning-button
                 class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
                 @click.native="showModalFirmaSolicitud(2)"
+                v-if="$inertia.page.props.permissions.solicitud_anular"
               >
                 <span class="text-sm">
                   <i class="fas fa-exclamation-circle"></i>
                   Anular
                 </span>
               </jet-warning-button>
-
+                <!-- boton Desembolsar -->
               <jet-button
-                v-if="updateSolicitudForm.solicitud_estado_id === 3"
+                v-if="updateSolicitudForm.solicitud_estado_id === 3 && $inertia.page.props.permissions.solicitud_firmar"
                 class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
                 @click.native="showModalFirmaSolicitud(2)"
               >
@@ -439,15 +463,13 @@
                 </span>
               </jet-button>
             </div>
-            
           </div>
         </template>
-
+<!--
         <template #footer v-else>
           <!-- contenedor del usuario que va tener el rol de analista de credito -->
-          <div class="sm:flex">
+          <!-- <div class="sm:flex">
             <div class="sm:flex-grow sm:flex-wrap sm:items-center">
-
               <jet-secondary-button
                 class="w-full sm:float-left sm:my-2 sm:w-auto"
                 @click.native="closeModalShowSolicitud"
@@ -457,10 +479,8 @@
                   Cerrar
                 </span>
               </jet-secondary-button>
-
             </div>
             <div class="flex sm:items-center">
-
               <jet-danger-button
                 class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
                 @click.native="showModalResponseSolicitud(4)"
@@ -480,10 +500,10 @@
                   Aprobar
                 </span>
               </jet-success-button>
-
             </div>
           </div>
-        </template> </jet-dialog-modal
+        </template> --> -->
+    </jet-dialog-modal
       ><!--// modal mostrar solicitud -->
 
       <!-- modal respuesta solicitud -->
@@ -533,18 +553,16 @@
               <!--  File Input -->
               <jet-label for="Anexo" value="Estudio de Crédito" />
               <div
-                class="relative flex items-center justify-center rounded-lg h-28 hover:cursor-pointer"
+                class="relative flex items-center justify-center rounded-lg h-36 hover:cursor-pointer"
                 :class="{
                   'border-dashed border-2 border-gray-400 bg-white': !dragOver,
-                  'border-dashed border-4 border-blue-700 bg-blue-50 animate-pulse': dragOver,
+                  'border-dashed border-4 border-blue-700 bg-blue-50 animate-pulse':
+                    dragOver,
                 }"
                 @dragover="dragOver = true"
                 @dragleave="dragOver = false"
               >
-                <div
-                  class="absolute"
-                  v-if="updateSolicitudForm.file.length == 0"
-                >
+                <div class="absolute w-full h-full p-3" :class="{hidden:updateSolicitudForm.file.length>0}">
                   <div class="flex flex-col items-center text-gray-500">
                     <i class="fas fa-cloud-upload-alt fa-2x"></i>
                     <span class="block font-normal text-gray-400"
@@ -555,25 +573,34 @@
                     >
                   </div>
                 </div>
-                <div class="absolute w-full h-full p-3" v-else>
-                  <div class="flex flex-col items-start text-gray-500">
-                    <i class="far fa-file-pdf fa-2x" v-show="true"></i>
-                    <span class="block font-normal text-gray-400"
-                      >Arrastra tus archivos aqui</span
+                <div class="absolute w-full h-full p-3">
+                  <!-- div donde muestra  los archivos cargados -->
+                  <div class="grid h-full grid-cols-4">
+                    <div
+                      class="grid grid-flow-col grid-rows-3"
+                      :key="index"
+                      v-for="(file, index) in updateSolicitudForm.file"
                     >
-                    <span class="block font-normal text-blue-400"
-                      >Buscar Archivos Clic Aqui</span
-                    >
+                      <div class="row row-cols-1">
+                        <div class="mx-auto text-center text-gray-500">
+                          <i class="mx-4 far fa-file-pdf fa-2x"></i>
+                        </div>
+                      </div>
+                      <div class="mx-2 row row-cols-1">
+                        <span
+                          class="block text-sm font-normal text-center text-gray-500 break-all sm:text-xs"
+                        >
+                          {{ file.name }}
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 <input
-                  @change="
-                    dragOver = false;
-                    updateSolicitudForm.file = $event.target.files;
-                  "
+                  @change="changeFile($event)"
                   ref="file"
                   type="file"
-                  @input="updateSolicitudForm.file.push($event.target.files)"
+
                   class="w-full h-full opacity-0"
                   multiple
                   name=""
@@ -658,8 +685,10 @@
                 <div
                   class="relative flex items-center justify-center rounded-lg h-28 hover:cursor-pointer"
                   :class="{
-                    'border-dashed border-2 border-gray-400 bg-white': !dragOver,
-                    'border-dashed border-4 border-blue-700 bg-blue-50 animate-pulse': dragOver,
+                    'border-dashed border-2 border-gray-400 bg-white':
+                      !dragOver,
+                    'border-dashed border-4 border-blue-700 bg-blue-50 animate-pulse':
+                      dragOver,
                   }"
                   @dragover="dragOver = true"
                   @dragleave="dragOver = false"
@@ -725,8 +754,6 @@
           </div>
         </template> </jet-dialog-modal
       ><!--//modal Firma -->
-
-
     </div>
   </app-layout>
 </template>
@@ -820,6 +847,8 @@ export default {
       estado: "",
       accionReponse: null,
       dragOver: false,
+      prueba: false,
+      $inertia : this.$inertia
     };
   },
 
@@ -830,6 +859,8 @@ export default {
     closeResponseSolicitud() {
       this.modalShowSolicitud = true;
       this.modalResponseSolicitud = false;
+      this.updateSolicitudForm.reset();
+      this.updateSolicitudForm.file = [];
     },
     closeFirmarSolicitud() {
       this.modalShowSolicitud = true;
@@ -837,15 +868,14 @@ export default {
       this.modalFirmaSolicitud = false;
     },
     showModalShowSolicitud(solicitud) {
-      this.pdf = "storage/" + solicitud.path_solicitud + "/solicitud.pdf";//ruta delos archivos
-      this.updateSolicitudForm.id = solicitud.id;//
+      this.pdf = "storage/" + solicitud.path_solicitud + "/solicitud.pdf"; //ruta delos archivos
+      this.updateSolicitudForm.id = solicitud.id; //
       this.createDesembolsarForm.solicitud_id = solicitud.id;
       this.createDesembolsarForm.id = solicitud.id;
-      this.updateSolicitudForm.solicitud_estado_id = solicitud.solicitud_estado_id;
+      this.updateSolicitudForm.solicitud_estado_id =
+        solicitud.solicitud_estado_id;
       this.updateSolicitudForm.valor = parseFloat(solicitud.monto);
       this.modalShowSolicitud = true;
-      console.log(solicitud.monto);
-      console.log(this.updateSolicitudForm.valor);
     },
     showModalResponseSolicitud(accionReponse) {
       this.accionReponse = accionReponse;
@@ -945,14 +975,22 @@ export default {
           },
           onSuccess: () => {
             this.$loading(false);
-
+            this.modalResponseSolicitud = false;
+            this.$toast("Solicitud Respuesta", {
+              type: "success",
+              position: "bottom-right",
+            });
+            this.updateSolicitudForm.reset();
           },
           onError: () => {
             this.$loading(false);
-            console.error(this.updateSolicitudForm.errors);
           },
         }
       );
+    },
+    changeFile($event){
+        this.dragOver = false;
+        this.updateSolicitudForm.file = this.updateSolicitudForm.file.concat(Array.from($event.target.files));
     },
     firmarSolicitud(estado_id) {
       this.createDesembolsarForm.solicitud_estado_id = estado_id;
@@ -978,11 +1016,15 @@ export default {
           },
           onSuccess: () => {
             this.$loading(false);
-            this.$swal("Desembolso Exitoso!", "Continua con la informacion socioeconomica", "success");
+            this.$swal(
+              "Desembolso Exitoso!",
+              "Continua con la informacion socioeconomica",
+              "success"
+            );
+
           },
           onError: () => {
             this.$loading(false);
-            console.error(this.updateSolicitudForm.errors);
           },
         }
       );
