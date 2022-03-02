@@ -294,6 +294,7 @@ class SolicitudController extends Controller
      */
     public function update(Request $request, Solicitud $solicitud)
     {
+        //estudio de credito
         if($request->solicitud_estado_id == 3 || $request->solicitud_estado_id == 4){
             $files = $request->file;//('file')[0]->store("public/".$solicitud->path_solicitud."Anexos"));
             $datosEstudio = $request->only("solicitud_estado_id","valor", "descripcion");
@@ -301,13 +302,14 @@ class SolicitudController extends Controller
             $estudioCredito = EstudioCredito::create($datosEstudio);
             foreach ($files as $file) {
                 $anexo = $file->store("public/".$solicitud->path_solicitud."Anexos");
-                EstudioCreditoAnexo::create([
+                 EstudioCreditoAnexo::create([
                     'estudio_credito_id'    => $estudioCredito->id,
                     'anexo'                 => $anexo,
 
-            ]);
+                ]);
             }
         }
+        //desemboso del credito
         if($request->solicitud_estado_id == 2){
             SocioDeNegocio::create([
                 "nombre"            => $solicitud->nombre . " " . $solicitud->apellido,
@@ -325,6 +327,7 @@ class SolicitudController extends Controller
                 $anexo["anexo"] = $pathAnexo;
                 DesembolsoAnexo::create($anexo);
             }
+            //codigo para firmado de contrato y pagare
         }
         $solicitud->update($request->only('solicitud_estado_id'));
         $solicitud->save();
