@@ -4,20 +4,20 @@
 
     <div class="min-h-screen bg-gray-100">
       <!-- cabecera de lapagina -->
-      <nav class="bg-white border-b border-gray-100 fixed w-full mb-16 z-10">
+      <nav class="fixed z-10 w-full mb-16 bg-white border-b border-gray-100">
         <!-- Primary Navigation Menu -->
-        <div class="flex max-w-8xl mx-auto">
+        <div class="flex mx-auto max-w-8xl">
           <!-- Logo -->
           <div class="flex items-center w-16">
             <inertia-link :href="route('dashboard')" class="mx-auto">
-              <jet-application-mark class="block h-9 w-auto" />
+              <jet-application-mark class="block w-auto h-9" />
             </inertia-link>
           </div>
 
           <!-- Text Multicredito -->
-          <div class="flex-grow justify-between h-16">
+          <div class="justify-between flex-grow h-16">
             <!-- Navigation Links (MULTICREDITO)-->
-            <div class="flex h-16 items-center">
+            <div class="flex items-center h-16">
               <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:flex">
                 <jet-nav-link
                   :href="route('dashboard')"
@@ -36,17 +36,17 @@
             :unread_notifications="this.$page.props.user.unread_notifications"
           />
           <!-- componente de dropdown para las opciones del perfil y sescion -->
-          <perfil-dropdown />
+          <perfil-dropdown/>
 
 <!-- menu responsivo -->
           <!-- menu Hamburger -->
-          <div class="-mr-2 px-4 flex items-center md:hidden">
+          <div class="flex items-center px-4 -mr-2 lg:hidden">
             <!-- Boton que abre el menu -->
             <button
               @click="showingNavigationDropdown = !showingNavigationDropdown"
-              class="inline-flex items-center justify-center p-2 rounded-md text-gray-500 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out"
+              class="inline-flex items-center justify-center p-2 text-gray-500 transition duration-150 ease-in-out rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500"
             >
-              <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                 <path
                   :class="{
                     hidden: showingNavigationDropdown,
@@ -78,16 +78,10 @@
             block: showingNavigationDropdown,
             hidden: !showingNavigationDropdown,
           }"
-          class="h-screen md:hidden"
+          class="block h-screen pb-16 overflow-y-auto lg:hidden"
         >
-          <div class="pt-2 pb-3 space-y-1">
-            <jet-responsive-nav-link
-              :href="route('dashboard')"
-              :active="route().current('dashboard')"
-            >
-              Multicredito
-            </jet-responsive-nav-link>
-          </div>
+
+          <responsive-menu/>
 
           <!-- Responsive Settings Options -->
           <div class="pt-4 pb-1 border-t border-gray-200">
@@ -97,17 +91,17 @@
                 class="flex-shrink-0 mr-3"
               >
                 <img
-                  class="h-10 w-10 rounded-full object-cover"
+                  class="object-cover w-10 h-10 rounded-full"
                   :src="$page.props.user.profile_photo_url"
                   :alt="$page.props.user.name"
                 />
               </div>
 
               <div>
-                <div class="font-medium text-base text-gray-800">
+                <div class="text-base font-medium text-gray-800">
                   {{ $page.props.user.name }}
                 </div>
-                <div class="font-medium text-sm text-gray-500">
+                <div class="text-sm font-medium text-gray-500">
                   {{ $page.props.user.email }}
                 </div>
               </div>
@@ -166,7 +160,7 @@
                       <div class="flex items-center">
                         <svg
                           v-if="team.id == $page.props.user.current_team_id"
-                          class="mr-2 h-5 w-5 text-green-400"
+                          class="w-5 h-5 mr-2 text-green-400"
                           fill="none"
                           stroke-linecap="round"
                           stroke-linejoin="round"
@@ -191,7 +185,7 @@
       <Sidebar class="pt-16" />
 
       <!-- Page Content -->
-      <main class="md:ml-16 md:pr-2 md:pt-16 max-h-screen overflow-y-auto">
+      <main class="max-h-screen overflow-y-auto md:ml-16 md:pr-2 md:pt-16">
         <div class="pt-10 md:pt-0">
           <slot></slot>
         </div>
@@ -213,6 +207,7 @@ import JetDropdownLink from "@/Jetstream/DropdownLink";
 import JetNavLink from "@/Jetstream/NavLink";
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
 import Sidebar from "@/Components/Sidebar";
+import ResponsiveMenu from "@/Components/ResponsiveMenu";
 
 export default {
   components: {
@@ -225,6 +220,7 @@ export default {
     JetNavLink,
     JetResponsiveNavLink,
     Sidebar,
+    ResponsiveMenu,
   },
 
   data() {

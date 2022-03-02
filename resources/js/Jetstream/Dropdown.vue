@@ -1,6 +1,6 @@
 <template>
     <div class="relative">
-        <div @click="open = ! open">
+        <div class="my-4 md:my-0" @click="open = ! open">
             <slot name="trigger"></slot>
         </div>
 
@@ -9,12 +9,12 @@
         </div>
 
         <transition
-            enter-active-class="transition ease-out duration-200"
-            enter-class="transform opacity-0 scale-95"
-            enter-to-class="transform opacity-100 scale-100"
-            leave-active-class="transition ease-in duration-75"
-            leave-class="transform opacity-100 scale-100"
-            leave-to-class="transform opacity-0 scale-95">
+            enter-active-class="transition duration-200 ease-out"
+            enter-class="transform scale-95 opacity-0"
+            enter-to-class="transform scale-100 opacity-100"
+            leave-active-class="transition duration-75 ease-in"
+            leave-class="transform scale-100 opacity-100"
+            leave-to-class="transform scale-95 opacity-0">
             <div v-show="open"
                     class="absolute z-50 mt-2 rounded-md shadow-lg"
                     :class="[widthClass, alignmentClasses]"
@@ -22,8 +22,8 @@
                     @click="open = false"
             >
                     <slot name="content"></slot>
-                    
-                
+
+
             </div>
         </transition>
     </div>

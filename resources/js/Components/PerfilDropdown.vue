@@ -1,6 +1,6 @@
 <template>
   <!-- Perfil Dropdown -->
-  <div class="hidden px-4 md:flex sm:items-center">
+  <div class="hidden px-4 lg:flex sm:items-center">
     <div class="relative">
       <!-- Teams Dropdown -->
       <jet-dropdown align="right" width="60" v-if="$page.props.jetstream.hasTeamFeatures">
@@ -8,7 +8,7 @@
           <span class="inline-flex rounded-md">
             <button
               type="button"
-              class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150"
+              class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50"
             >
               {{ $page.props.user.current_team.name }}
 
@@ -59,7 +59,7 @@
                     <div class="flex items-center">
                       <svg
                         v-if="team.id == $page.props.user.current_team_id"
-                        class="mr-2 h-5 w-5 text-green-400"
+                        class="w-5 h-5 mr-2 text-green-400"
                         fill="none"
                         stroke-linecap="round"
                         stroke-linejoin="round"
@@ -86,10 +86,10 @@
         <template #trigger>
           <button
             v-if="$page.props.jetstream.managesProfilePhotos"
-            class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
+            class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300"
           >
             <img
-              class="h-8 w-8 rounded-full object-cover"
+              class="object-cover w-8 h-8 rounded-full"
               :src="$page.props.user.profile_photo_url"
               :alt="$page.props.user.name"
             />
@@ -98,7 +98,7 @@
           <span v-else class="inline-flex rounded-md">
             <button
               type="button"
-              class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+              class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none"
             >
               {{ $page.props.user.name }}
 
@@ -119,7 +119,7 @@
         </template>
 
         <template #content>
-          <div class="rounded-md ring-1 ring-black ring-opacity-5 bg-white">
+          <div class="bg-white rounded-md ring-1 ring-black ring-opacity-5">
             <!-- Account Management -->
             <div class="block px-4 py-2 text-xs text-gray-400">Manage Account</div>
 

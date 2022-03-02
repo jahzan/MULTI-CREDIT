@@ -1,51 +1,51 @@
 <template>
 <div>
-      <div class="w-full flex flex-wrap">
+      <div class="flex flex-wrap w-full">
 
         <!-- Login Section -->
-        <div class="w-full h-screen overflow-auto md:w-1/2 flex flex-col">
-
-            <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
-                <a href="#" class=" text-white font-bold text-xl p-4">
-                    <jet-application-mark class="block h-16 w-auto" />
-                </a>
-            </div>
-
-            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-                <div class="text-4xl flex font-extrabold items-center">
-                    <span class="mx-auto bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-blue-400">
-                        Bienvenido
-                    </span>
+        <div class="flex flex-col w-full h-screen overflow-auto lg:w-1/2">
+            <div class="sm:my-0">
+                <div class="flex justify-center md:pt-12 lg:justify-start lg:pl-12 lg:-mb-24">
+                    <a href="#" class="p-4 text-xl font-bold text-white ">
+                        <jet-application-mark class="block w-auto h-28 md:h-44 lg:h-14" />
+                    </a>
                 </div>
-                
-                <form class="flex flex-col pt-3 md:pt-8" @submit.prevent="submit">
-                    <jet-validation-errors class="mb-4" />
-                    <div class="flex flex-col pt-4">
-                        <jet-label for="email" class="text-lg" value="Email"/>
-                        <jet-input v-model="form.email" type="email" id="email" placeholder="su@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
+
+                <div class="flex flex-col justify-center px-4 my-auto sm:pt-8 lg:justify-start lg:pt-20 md:px-24 lg:px-32">
+                    <div class="flex items-center text-4xl font-extrabold">
+                        <span class="mx-auto text-transparent bg-clip-text bg-gradient-to-r from-blue-800 to-blue-400">
+                            Bienvenido
+                        </span>
                     </div>
-    
-                    <div class="flex flex-col pt-4">
-                        <jet-label for="password" class="text-lg" value="Contraseña"/>
-                        <jet-input v-model="form.password" type="password" id="password" placeholder="Su contraseña" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
+
+                    <form class="flex flex-col pt-3 lg:pt-8" @submit.prevent="submit">
+                        <jet-validation-errors class="mb-4" />
+                        <div class="flex flex-col pt-4">
+                            <jet-label for="email" class="text-lg" value="Email"/>
+                            <jet-input v-model="form.email" type="email" id="email" placeholder="su@email.com" class="w-full px-3 py-2 mt-1 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"/>
+                        </div>
+
+                        <div class="flex flex-col pt-4">
+                            <jet-label for="password" class="text-lg" value="Contraseña"/>
+                            <jet-input v-model="form.password" type="password" id="password" placeholder="Su contraseña" class="w-full px-3 py-2 mt-1 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"/>
+                        </div>
+
+                        <jet-button type="submit" value="Ingresar" class="flex-auto p-4 mt-6 text-sm font-bold text-center text-white bg-black hover:bg-gray-700">Ingresar</jet-button>
+                    </form>
+                    <div class="pt-1 text-center sm:pt-12 sm:pb-12">
+                        <p>No recuerdas la contraseña?
+                            <inertia-link :href="route('password.request')" class="font-semibold underline">
+                                Restaurar contraseña aquí.
+                            </inertia-link>
+                        </p>
                     </div>
-    
-                    <jet-button type="submit" value="Ingresar" class="flex-auto bg-black text-white font-bold text-sm text-center hover:bg-gray-700 p-4 mt-6">Ingresar</jet-button>
-                </form>
-                <div class="text-center pt-12 pb-12">
-                    <p>No recuerdas la contraseña? 
-                        <inertia-link :href="route('password.request')" class="underline font-semibold">
-                            Restaurar contraseña aquí.
-                        </inertia-link>
-                    </p>
                 </div>
             </div>
-
         </div>
 
         <!-- Image Section -->
         <div class="w-1/2 shadow-2xl">
-            <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0">
+            <img class="hidden object-cover w-full h-screen lg:block" src="https://source.unsplash.com/IXUM4cJynP0">
         </div>
 
     </div>

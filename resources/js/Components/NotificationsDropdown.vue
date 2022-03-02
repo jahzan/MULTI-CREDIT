@@ -1,7 +1,7 @@
 <template>
   <!-- Notifications Dropdown -->
   <!-- Perfil Dropdown -->
-  <div class="hidden px-4 md:flex sm:items-center">
+  <div class="flex px-4 sm:items-center">
     <div class="relative">
       <!-- Teams Dropdown -->
       <jet-dropdown align="right" width="60" v-if="$page.props.jetstream.hasTeamFeatures">
@@ -9,15 +9,15 @@
           <span class="inline-flex rounded-md">
             <button
               type="button"
-              class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150"
+              class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50"
             >
               <div
                 v-if="Nnotify > 0"
-                class="mt-5 py-1 absolute top-0 right-0 flex font-semibold rounded-full items-center cursor-pointer bg-red-500 w-4 h-4"
+                class="absolute top-0 right-0 flex items-center w-4 h-4 py-1 mt-5 font-semibold bg-red-500 rounded-full cursor-pointer"
               >
-                <p class="text-white text-xs text-center mx-auto">{{ notify }}</p>
+                <p class="mx-auto text-xs text-center text-white">{{ notify }}</p>
               </div>
-              <i class="far fa-bell fa-2x text-gray-500 my-auto" />
+              <i class="my-auto text-gray-500 far fa-bell fa-2x" />
             </button>
           </span>
         </template>
@@ -30,23 +30,23 @@
         <template #trigger>
           <!-- boton que despliega el dropdonw -->
           <button
-            class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out"
+            class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300"
           >
             <!-- contenedor de iconos e newbaged muestra en un circulo rojo el numero de  notificaciones pendientes-->
             <div
               v-if="Nnotify > 0"
-              class="mt-5 py-1 absolute top-0 right-0 flex font-semibold rounded-full items-center cursor-pointer bg-red-500 w-4 h-4"
+              class="absolute top-0 right-0 flex items-center w-4 h-4 py-1 mt-5 font-semibold bg-red-500 rounded-full cursor-pointer"
             >
-              <p class="text-white text-xs text-center mx-auto">{{ notify }}</p>
+              <p class="mx-auto text-xs text-center text-white">{{ notify }}</p>
             </div>
             <!-- icono de campana para las notificaciones -->
-            <i class="far fa-bell fa-2x text-gray-500 my-auto" />
+            <i class="my-auto text-gray-500 far fa-bell fa-2x" />
           </button>
         </template>
 
         <template #content>
           <div
-            class="absolute right-0 ring-2 ring-black ring-opacity-5 bg-white rounded-md shadow-2xl overflow-hidden z-20"
+            class="absolute right-0 z-20 overflow-hidden bg-white rounded-md shadow-2xl ring-2 ring-black ring-opacity-5"
             style="width: 20rem"
           >
             <!-- Div que contiene el contenido del cuerpo de las notificaciones -->
@@ -54,15 +54,15 @@
               <!-- Div que se muestra en caso que no halla notificaciones -->
               <div
                 v-if="Nnotify < 1"
-                class="flex items-center px-4 py-3 border-b hover:bg-gray-100 -mx-2"
+                class="flex items-center px-4 py-3 -mx-2 border-b hover:bg-gray-100"
               >
-                <p class="text-gray-600 text-sm mx-2">
+                <p class="mx-2 text-sm text-gray-600">
                   <span href="" class="font-bold">Nó hay notificaiones nuevas</span>
                 </p>
               </div>
 
               <!-- Div que se muestra en caso que halla notificaciones -->
-              <div v-else class="max-h-96 overflow-y-scroll">
+              <div v-else class="overflow-y-scroll max-h-96">
                 <!-- La estructura de las notificaciones {Emisor Mensaje Cliente} -->
                 <!-- Ejemplo PepeShop ha solicitado un credito para Sandra Paez -->
                 <!-- Multicredito informa que ha sido aprobada la solicitud de credito a nombre Sandra Paez -->
@@ -76,7 +76,7 @@
                   :key="notify.id"
                   class="flex items-center px-1 py-3 border-b hover:bg-gray-100"
                 >
-                  <p class="text-gray-600 text-sm mx-2">
+                  <p class="mx-2 text-sm text-gray-600">
                     <span href="#" class="font-bold">{{ notify.data.sender }}</span>
                     {{ notify.data.message }}
                     <span href="#" class="font-bold text-blue-500">{{
@@ -90,7 +90,7 @@
             </div>
 
             <!-- Link para direcionar a la pagina de las notificaciones donde se muestran todas-->
-            <a class="block bg-gray-800 text-white text-center font-bold py-2">
+            <a class="block py-2 font-bold text-center text-white bg-gray-800">
               Mostrar todas las notificaiones
             </a>
           </div>
