@@ -2,28 +2,6 @@
   <!-- Notifications Dropdown -->
   <!-- Perfil Dropdown -->
   <div class="flex px-4 sm:items-center">
-    <div class="relative">
-      <!-- Teams Dropdown -->
-      <jet-dropdown align="right" width="60" v-if="$page.props.jetstream.hasTeamFeatures">
-        <template #trigger>
-          <span class="inline-flex rounded-md">
-            <button
-              type="button"
-              class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out bg-white border border-transparent rounded-md hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50"
-            >
-              <div
-                v-if="Nnotify > 0"
-                class="absolute top-0 right-0 flex items-center w-4 h-4 py-1 mt-5 font-semibold bg-red-500 rounded-full cursor-pointer"
-              >
-                <p class="mx-auto text-xs text-center text-white">{{ notify }}</p>
-              </div>
-              <i class="my-auto text-gray-500 far fa-bell fa-2x" />
-            </button>
-          </span>
-        </template>
-      </jet-dropdown>
-    </div>
-
     <!-- Settings Dropdown -->
     <div class="relative">
       <jet-dropdown align="right" width="48">
@@ -45,55 +23,54 @@
         </template>
 
         <template #content>
-          <div
-            class="absolute right-0 z-20 overflow-hidden bg-white rounded-md shadow-2xl ring-2 ring-black ring-opacity-5"
-            style="width: 20rem"
-          >
-            <!-- Div que contiene el contenido del cuerpo de las notificaciones -->
-            <div class="">
-              <!-- Div que se muestra en caso que no halla notificaciones -->
-              <div
-                v-if="Nnotify < 1"
-                class="flex items-center px-4 py-3 -mx-2 border-b hover:bg-gray-100"
-              >
-                <p class="mx-2 text-sm text-gray-600">
-                  <span href="" class="font-bold">Nó hay notificaiones nuevas</span>
-                </p>
-              </div>
+            <!-- div layout para el dropdown-responsive -->
+                <div class="flex flex-col h-full md:max-h-96">
+                    <div class="h-full overflow-y-scroll">
+                            <!-- Div que se muestra en caso que no halla notificaciones -->
+                            <div
+                                v-if="Nnotify < 1"
+                                class="flex items-center px-4 py-3 -mx-2 border-b hover:bg-gray-100"
+                            >
+                                <p class="mx-2 text-sm text-gray-600">
+                                <span href="" class="font-bold">Nó hay notificaiones nuevas</span>
+                                </p>
+                            </div>
+                            <!-- Div que se muestra en caso que halla notificaciones -->
+                            <div v-else>
+                                <!-- La estructura de las notificaciones {Emisor Mensaje Cliente} -->
+                                <!-- Ejemplo PepeShop ha solicitado un credito para Sandra Paez -->
+                                <!-- Multicredito informa que ha sido aprobada la solicitud de credito a nombre Sandra Paez -->
+                                <!-- PepeShop = Emisor sender-->
+                                <!-- ha solicitado un credito para o informa que ha sido aprobada la solicitud de credito a nombre = Mensaje message-->
+                                <!-- Sandra Paez = Cliente client -->
 
-              <!-- Div que se muestra en caso que halla notificaciones -->
-              <div v-else class="overflow-y-scroll max-h-96">
-                <!-- La estructura de las notificaciones {Emisor Mensaje Cliente} -->
-                <!-- Ejemplo PepeShop ha solicitado un credito para Sandra Paez -->
-                <!-- Multicredito informa que ha sido aprobada la solicitud de credito a nombre Sandra Paez -->
-                <!-- PepeShop = Emisor sender-->
-                <!-- ha solicitado un credito para o informa que ha sido aprobada la solicitud de credito a nombre = Mensaje message-->
-                <!-- Sandra Paez = Cliente client -->
+                                <a
+                                href="#"
+                                v-for="notify in unread_notifications"
+                                :key="notify.id"
+                                class="flex items-center px-1 py-3 border-b hover:bg-gray-100"
+                                >
+                                <p class="mx-2 text-sm text-gray-600">
+                                    <span href="#" class="font-bold">{{ notify.data.sender }}</span>
+                                    {{ notify.data.message }}
+                                    <span href="#" class="font-bold text-blue-500">{{
+                                    notify.data.client
+                                    }}</span>
+                                    . {{diferenciaFechas(notify.created_at)}}
+                                </p>
+                                {{ unread_notifications.data }}
+                                </a>
+                            </div>
+                    </div>
+                    <div class="h-16">
+                            <!-- Link para direcionar a la pagina de las notificaciones donde se muestran todas-->
+                            <a class="block py-2 text-xl font-bold text-center text-white bg-gray-800">
+                                Mostrar todas las notificaiones
+                            </a>
+                    </div>
+                </div>
 
-                <a
-                  href="#"
-                  v-for="notify in unread_notifications"
-                  :key="notify.id"
-                  class="flex items-center px-1 py-3 border-b hover:bg-gray-100"
-                >
-                  <p class="mx-2 text-sm text-gray-600">
-                    <span href="#" class="font-bold">{{ notify.data.sender }}</span>
-                    {{ notify.data.message }}
-                    <span href="#" class="font-bold text-blue-500">{{
-                      notify.data.client
-                    }}</span>
-                    . {{diferenciaFechas(notify.created_at)}}
-                  </p>
-                  {{ unread_notifications.data }}
-                </a>
-              </div>
-            </div>
 
-            <!-- Link para direcionar a la pagina de las notificaciones donde se muestran todas-->
-            <a class="block py-2 font-bold text-center text-white bg-gray-800">
-              Mostrar todas las notificaiones
-            </a>
-          </div>
         </template>
       </jet-dropdown>
     </div>

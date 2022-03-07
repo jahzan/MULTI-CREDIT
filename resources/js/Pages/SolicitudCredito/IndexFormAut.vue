@@ -38,7 +38,7 @@
                   :data="documentosId"
                   v-model.trim="CreateSolicitudForm.tipoDoc"
                   dropdownClass="absolute w-72 z-50 bg-white border border-gray-300 mt-1 mh-48 overflow-hidden overflow-y-scroll rounded-md shadow-md"
-                  class="block w-11/12 mt-1 mr-2 text-gray-500 sm:mr-0 md:ml-1"
+                  class="block w-full mt-1 mb-6 mr-2 text-gray-500 sm:mr-0"
                   placeholder="Tipo "
               />
               <jet-input-error
@@ -374,7 +374,7 @@ export default {
           },
           onSuccess: () => {
             this.$loading(false);
-            this.$swal("Realizado con Exito!", "Continua con la informacion socioeconomica", "success");
+            this.$swal("Solicitud Aprobada!", "Continua con la informacion socioeconomica", "success");
           },
           onError: () => {
             this.activeModal = false;

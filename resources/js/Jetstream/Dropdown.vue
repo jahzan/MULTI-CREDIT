@@ -8,6 +8,11 @@
         <div v-show="open" class="fixed inset-0 z-40" @click="open = false">
         </div>
 
+        <!-- Full Screen responsive mode -->
+        <div v-show="open" class="fixed inset-0 z-40 w-screen mt-16 bg-white border-t md:hidden">
+                <slot name="content"></slot>
+        </div>
+
         <transition
             enter-active-class="transition duration-200 ease-out"
             enter-class="transform scale-95 opacity-0"
@@ -16,13 +21,17 @@
             leave-class="transform scale-100 opacity-100"
             leave-to-class="transform scale-95 opacity-0">
             <div v-show="open"
-                    class="absolute z-50 mt-2 rounded-md shadow-lg"
+                    class="absolute z-50 hidden mt-2 rounded-md shadow-lg md:block"
                     :class="[widthClass, alignmentClasses]"
                     style="display: none;"
                     @click="open = false"
             >
+                <div
+                    class="absolute right-0 z-20 overflow-hidden bg-white rounded-md shadow-2xl ring-2 ring-black ring-opacity-5"
+                    style="width: 20rem"
+                >
                     <slot name="content"></slot>
-
+                </div>
 
             </div>
         </transition>

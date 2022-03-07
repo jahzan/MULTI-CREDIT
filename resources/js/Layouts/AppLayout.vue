@@ -71,7 +71,6 @@
             </button>
           </div>
         </div>
-
         <!-- Menu es elemento que se abre al hacer click en el boton de menu -->
         <div
           :class="{
@@ -179,6 +178,7 @@
             </div>
           </div>
         </div>
+<!-- menu responsivo -->
       </nav>
 
       <!-- menu lateral -->
