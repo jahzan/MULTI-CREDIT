@@ -64,7 +64,7 @@
                     </div>
                     <div class="h-16">
                             <!-- Link para direcionar a la pagina de las notificaciones donde se muestran todas-->
-                            <a class="block py-2 text-xl font-bold text-center text-white bg-gray-800">
+                            <a class="block h-full py-3 text-xl font-bold text-center text-white bg-gray-800">
                                 Mostrar todas las notificaiones
                             </a>
                     </div>
