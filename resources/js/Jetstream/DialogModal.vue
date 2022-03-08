@@ -1,12 +1,12 @@
 <template>
     <modal :show="show" :max-width="maxWidth" :closeable="closeable" @close="close">
-        <div class="px-1 py-2 md:px-6 md:py-4">
+        <div class="px-1">
             <div class="text-lg">
                 <slot name="title">
                 </slot>
             </div>
 
-            <div class="sm:mt-4">
+            <div>
                 <slot name="content">
                 </slot>
             </div>

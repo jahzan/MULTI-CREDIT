@@ -103,7 +103,7 @@
                       <jet-dropdown-filter align="right" width="">
                         <template #trigger>
                           <button
-                            class="flex items-center py-2 my-auto text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full  focus:outline-none focus:border-gray-300"
+                            class="flex items-center py-2 my-auto text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300"
                           >
                             <i
                               class="
@@ -119,11 +119,11 @@
 
                         <template #content>
                           <div
-                            class="right-0 z-50 overflow-hidden bg-white border rounded-md shadow-lg  w-80"
+                            class="right-0 z-50 overflow-hidden bg-white border rounded-md shadow-lg w-80"
                           >
                             <div
                               href="#"
-                              class="flex items-center px-4 py-1 -mx-2 border-b  hover:bg-gray-100"
+                              class="flex items-center px-4 py-1 -mx-2 border-b hover:bg-gray-100"
                             >
                               <p class="object-cover w-2/5 ml-1">
                                 <span class="text-xs font-bold" href="#"
@@ -140,7 +140,7 @@
                                   <option
                                     v-for="estado in estados"
                                     :key="estado.id"
-                                    class="h-12 border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="h-12 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     :value="estado.id"
                                   >
                                     {{ estado.name }}
@@ -150,7 +150,7 @@
                             </div>
                             <div
                               href="#"
-                              class="flex items-center px-4 py-1 -mx-2 border-b  hover:bg-gray-100"
+                              class="flex items-center px-4 py-1 -mx-2 border-b hover:bg-gray-100"
                             >
                               <p class="object-cover w-2/5 ml-1">
                                 <span class="text-xs font-bold" href="#"
@@ -161,37 +161,37 @@
                                 <template #options>
                                   <!-- <option value=""></option> -->
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     value="Primaria"
                                   >
                                     Primaria
                                   </option>
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     value="Secundaria"
                                   >
                                     Secundaria
                                   </option>
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     value="Tecnico o Tecnologo"
                                   >
                                     Tecnico o Tecnologo
                                   </option>
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     value="Carrera Universitaria"
                                   >
                                     Carrera Universitaria
                                   </option>
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     value="Maestria"
                                   >
                                     Maestria
                                   </option>
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                   >
                                     Doctorado
                                   </option>
@@ -200,7 +200,7 @@
                             </div>
                             <div
                               href="#"
-                              class="flex items-center px-4 py-1 -mx-2 border-b  hover:bg-gray-100"
+                              class="flex items-center px-4 py-1 -mx-2 border-b hover:bg-gray-100"
                             >
                               <p class="object-cover w-2/5 ml-1">
                                 <span class="text-xs font-bold" href="#"
@@ -211,37 +211,37 @@
                                 <template #options>
                                   <!-- <option value=""></option> -->
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     value="Primaria"
                                   >
                                     Primaria
                                   </option>
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     value="Secundaria"
                                   >
                                     Secundaria
                                   </option>
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     value="Tecnico o Tecnologo"
                                   >
                                     Tecnico o Tecnologo
                                   </option>
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     value="Carrera Universitaria"
                                   >
                                     Carrera Universitaria
                                   </option>
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                     value="Maestria"
                                   >
                                     Maestria
                                   </option>
                                   <option
-                                    class="border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    class="border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                                   >
                                     Doctorado
                                   </option>
@@ -286,7 +286,7 @@
 
                 <td class="px-3 py-2 whitespace-nowrap">
                   <div
-                    class="text-base tracking-widest text-gray-900  oldstyle-nums"
+                    class="text-base tracking-widest text-gray-900 oldstyle-nums"
                   >
                     {{ "$ " + formatMiles(solicitud.monto) }}
                   </div>
@@ -294,7 +294,7 @@
 
                 <td class="px-3 py-2 whitespace-nowrap">
                   <div
-                    class="text-base tracking-widest text-gray-900  oldstyle-nums"
+                    class="text-base tracking-widest text-gray-900 oldstyle-nums"
                   >
                     {{ formatFecha(new Date(solicitud.updated_at)) }}
                   </div>
@@ -302,7 +302,7 @@
 
                 <td class="px-3 py-2 whitespace-nowrap">
                   <div
-                    class="text-base tracking-widest text-center text-gray-900  oldstyle-nums"
+                    class="text-base tracking-widest text-center text-gray-900 oldstyle-nums"
                   >
                     {{ formatHora(new Date(solicitud.updated_at)) }}
                   </div>
@@ -349,7 +349,7 @@
                 <td class="px-3 py-2 whitespace-nowrap">
                   <jet-secondary-button
                     @click.native="showModalShowSolicitud(solicitud)"
-                    class="text-xs tracking-widest text-indigo-600 underline cursor-pointer  hover:text-indigo-900"
+                    class="text-xs tracking-widest text-indigo-600 underline cursor-pointer hover:text-indigo-900"
                   >
                     Ver Mas
                   </jet-secondary-button>
@@ -395,11 +395,12 @@
         <template #title> </template>
 
         <template #content>
-          <vue-pdf-app
+          <!-- <vue-pdf-app
             style="height: 70vh"
             class="md:w-full"
             :pdf="pdf"
-          ></vue-pdf-app>
+          ></vue-pdf-app> -->
+          <PSPDFKitContainer :pdfFile="pdf" @loaded="handleLoaded" />
         </template>
 
         <template #footer>
@@ -418,7 +419,7 @@
             </div>
             <div class="flex justify-end w-full my-auto md:w-2/3">
               <jet-danger-button
-                class="w-2/4 mx-1 my-2  sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
                 @click.native="showModalResponseSolicitud(4)"
                 v-if="$inertia.page.props.permissions.solicitud_rechazar"
               >
@@ -429,7 +430,7 @@
               </jet-danger-button>
 
               <jet-success-button
-                class="w-2/4 mx-1 my-2  sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
                 @click.native="showModalResponseSolicitud(3)"
                 v-if="$inertia.page.props.permissions.solicitud_aprobar"
               >
@@ -440,7 +441,7 @@
               </jet-success-button>
 
               <jet-warning-button
-                class="w-2/4 mx-1 my-2  sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
                 @click.native="showModalFirmaSolicitud(2)"
                 v-if="$inertia.page.props.permissions.solicitud_anular"
               >
@@ -455,7 +456,7 @@
                   updateSolicitudForm.solicitud_estado_id === 3 &&
                   $inertia.page.props.permissions.solicitud_firmar
                 "
-                class=""
+                class="w-2/4 mx-1 my-2 sm:float-left sm:w-auto sm:mx-auto"
                 @click.native="showModalFirmaSolicitud(2)"
               >
                 <span class="text-sm lg:text-lg">
@@ -541,7 +542,7 @@
             <jet-label for="id" value="Valor a Prestar" />
             <vue-numeric
               disabled
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               currency="$"
               separator="."
               decimal-separator=","
@@ -553,7 +554,7 @@
           <div>
             <jet-label for="id" value="Descripcion Solicitud" />
             <textarea
-              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm  form-textarea focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              class="block w-full mt-1 border-gray-300 rounded-md shadow-sm form-textarea focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               v-model="updateSolicitudForm.descripcion"
               placeholder="Describa la Solicitud Aprobada"
             ></textarea>
@@ -565,7 +566,7 @@
               <!--  File Input -->
               <jet-label for="Anexo" value="Estudio de Crédito" />
               <div
-                class="relative flex items-center justify-center rounded-lg  h-36 hover:cursor-pointer"
+                class="relative flex items-center justify-center rounded-lg h-36 hover:cursor-pointer"
                 :class="{
                   'border-dashed border-2 border-gray-400 bg-white': !dragOver,
                   'border-dashed border-4 border-blue-700 bg-blue-50 animate-pulse':
@@ -603,7 +604,7 @@
                       </div>
                       <div class="mx-2 row row-cols-1">
                         <span
-                          class="block text-sm font-normal text-center text-gray-500 break-all  sm:text-xs"
+                          class="block text-sm font-normal text-center text-gray-500 break-all sm:text-xs"
                         >
                           {{ file.name }}
                         </span>
@@ -672,7 +673,7 @@
               <div class="md:w-3/5">
                 <jet-label for="id" value="Valor Factura" />
                 <vue-numeric
-                  class="block mt-1 border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  class="block mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   currency="$"
                   separator="."
                   id="Valor"
@@ -683,7 +684,7 @@
               <div class="mt-6 md:mt-0 md:ml-2 md:w-3/5">
                 <jet-label for="Cuotas" value="Cuotas" />
                 <vue-numeric
-                  class="block mt-1 border-gray-300 rounded-md shadow-sm  focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                  class="block mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                   placeholder="Meses"
                   v-model="createDesembolsarForm.cuota"
                   id="Cuotas"
@@ -697,7 +698,7 @@
                 <!--  File Input -->
                 <jet-label for="Anexo" value="Factura y Cedula" />
                 <div
-                  class="relative flex items-center justify-center rounded-lg  h-28 hover:cursor-pointer"
+                  class="relative flex items-center justify-center rounded-lg h-28 hover:cursor-pointer"
                   :class="{
                     'border-dashed border-2 border-gray-400 bg-white':
                       !dragOver,
@@ -801,6 +802,7 @@ import JetDialogModal from "@/Jetstream/DialogModal";
 import JetSelect from "../../Components/Select";
 import JetDropdownLink from "@/Jetstream/DropdownLink";
 import Push from "push.js";
+import PSPDFKitContainer from "@/components/PSPDFKitContainer";
 
 export default {
   props: ["sessions", "solicitudes", "estados"],
@@ -829,6 +831,7 @@ export default {
     JetDialogModal,
     JetDangerButton,
     VuePdfApp,
+    PSPDFKitContainer
   },
 
   data() {
