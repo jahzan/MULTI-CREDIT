@@ -1,6 +1,6 @@
 <template>
     <modal :show="show" :max-width="maxWidth" :closeable="closeable" @close="close">
-        <div class="px-6 py-4">
+        <div class="px-1 py-2 md:px-6 md:py-4">
             <div class="text-lg">
                 <slot name="title">
                 </slot>
@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <div class="px-6 py-4 bg-gray-100 text-right">
+        <div class="px-1 py-2 text-right bg-gray-100 md:px-6 md:py-4">
             <slot name="footer">
             </slot>
         </div>

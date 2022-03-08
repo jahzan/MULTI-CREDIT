@@ -404,71 +404,121 @@
 
         <template #footer>
           <!-- Contenedor del usuario que va tener el rol de asesor de credito -->
-          <div class="sm:flex">
-            <div class="sm:flex-grow sm:flex-wrap sm:place-items-center">
+          <div class="flex flex-wrap">
+            <div class="order-last w-full my-auto md:order-first md:w-1/3">
               <jet-secondary-button
-                class="w-full sm:float-left sm:my-2 sm:w-auto"
+                class="w-full sm:float-left sm:w-auto"
                 @click.native="closeModalShowSolicitud"
               >
-                <span>
+                <span class="mx-auto text-sm">
                   <i class="far fa-times-circle fa-lg"></i>
                   Cerrar
                 </span>
               </jet-secondary-button>
             </div>
+            <div class="flex justify-end w-full my-auto md:w-2/3 ">
+                <jet-danger-button
+                    class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                    @click.native="showModalResponseSolicitud(4)"
+                    v-if="$inertia.page.props.permissions.solicitud_rechazar"
+                >
+                    <span class="mx-auto text-sm">
+                    <i class="hidden md:inline fas fa-times fa-lg"></i>
+                    Rechazar
+                    </span>
+                </jet-danger-button>
 
-            <div class="flex sm:items-center">
-                <!-- boton rechazar -->
-              <jet-danger-button
-                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
-                @click.native="showModalResponseSolicitud(4)"
-                v-if="$inertia.page.props.permissions.solicitud_rechazar"
-              >
-                <span>
-                  <i class="fas fa-times fa-lg"></i>
-                  Rechazar
-                </span>
-              </jet-danger-button>
-                <!-- boton aprobar -->
               <jet-success-button
-                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
-                @click.native="showModalResponseSolicitud(3)"
-                v-if="$inertia.page.props.permissions.solicitud_aprobar"
+                        class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                        @click.native="showModalResponseSolicitud(3)"
+                        v-if="$inertia.page.props.permissions.solicitud_aprobar"
               >
-                <span class="text-base">
-                  <i class="fas fa-check"></i>
-                  Aprobar
-                </span>
+                        <span class="mx-auto text-sm lg:text-lg">
+                        <i class="hidden md:inline fas fa-check"></i>
+                        Aprobar
+                        </span>
               </jet-success-button>
-                <!-- Boton Anular -->
+
               <jet-warning-button
                 class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
                 @click.native="showModalFirmaSolicitud(2)"
                 v-if="$inertia.page.props.permissions.solicitud_anular"
               >
-                <span class="text-sm">
-                  <i class="fas fa-exclamation-circle"></i>
+                <span class="mx-auto text-sm">
+                  <i class="hidden md:inline fas fa-exclamation-circle"></i>
                   Anular
                 </span>
               </jet-warning-button>
-                <!-- boton Desembolsar -->
+
               <jet-button
-                v-if="updateSolicitudForm.solicitud_estado_id === 3 && $inertia.page.props.permissions.solicitud_firmar"
-                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                v-if="
+                  updateSolicitudForm.solicitud_estado_id === 3 &&
+                  $inertia.page.props.permissions.solicitud_firmar
+                "
+                class=""
                 @click.native="showModalFirmaSolicitud(2)"
               >
-                <span class="text-lg">
-                  <i class="fas fa-file-signature"></i>
+                <span class="text-sm lg:text-lg">
+                  <i class="hidden md:inline fas fa-file-signature"></i>
                   Desembolso
                 </span>
               </jet-button>
             </div>
+
+            <!-- <div class="flex float-right">flex justify-end my-auto md:w-2/3 -->
+
+            <!-- boton rechazar -->
+            <!-- <jet-danger-button
+                    class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                    @click.native="showModalResponseSolicitud(4)"
+                    v-if="$inertia.page.props.permissions.solicitud_rechazar"
+                >
+                    <span class="mx-auto text-sm">
+                    <i class="hidden md:flex fas fa-times fa-lg"></i>
+                    Rechazar
+                    </span>
+                    </jet-danger-button> -->
+            <!-- boton aprobar -->
+            <!-- <jet-success-button
+                        class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                        @click.native="showModalResponseSolicitud(3)"
+                        v-if="$inertia.page.props.permissions.solicitud_aprobar"
+                    >
+                        <span class="mx-auto text-sm lg:text-lg">
+                        <i class="hidden md:flex fas fa-check"></i>
+                        Aprobar
+                        </span>
+                    </jet-success-button> -->
+
+            <!-- Boton Anular -->
+            <!-- <jet-warning-button
+                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                @click.native="showModalFirmaSolicitud(2)"
+                v-if="$inertia.page.props.permissions.solicitud_anular"
+              >
+                <span class="mx-auto text-sm">
+                  <i class="hidden md:flex fas fa-exclamation-circle"></i>
+                  Anular
+                </span>
+              </jet-warning-button> -->
+            <!-- boton Desembolsar -->
+            <!-- <jet-button
+                v-if="updateSolicitudForm.solicitud_estado_id === 3 && $inertia.page.props.permissions.solicitud_firmar"
+                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
+                @click.native="showModalFirmaSolicitud(2)"
+              >
+                <span class="mx-auto text-sm lg:text-lg">
+                  <i class="hidden md:flex fas fa-file-signature"></i>
+                  Desembolso
+                </span>
+              </jet-button> -->
+            <!-- </div> -->
           </div>
         </template>
-<!--
+        <!--
         <template #footer v-else>
           <!-- contenedor del usuario que va tener el rol de analista de credito -->
-          <!-- <div class="sm:flex">
+        <!-- <div class="sm:flex">
             <div class="sm:flex-grow sm:flex-wrap sm:items-center">
               <jet-secondary-button
                 class="w-full sm:float-left sm:my-2 sm:w-auto"
@@ -502,8 +552,8 @@
               </jet-success-button>
             </div>
           </div>
-        </template> --> -->
-    </jet-dialog-modal
+        </template> -->
+        --> </jet-dialog-modal
       ><!--// modal mostrar solicitud -->
 
       <!-- modal respuesta solicitud -->
@@ -562,7 +612,10 @@
                 @dragover="dragOver = true"
                 @dragleave="dragOver = false"
               >
-                <div class="absolute w-full h-full p-3" :class="{hidden:updateSolicitudForm.file.length>0}">
+                <div
+                  class="absolute w-full h-full p-3"
+                  :class="{ hidden: updateSolicitudForm.file.length > 0 }"
+                >
                   <div class="flex flex-col items-center text-gray-500">
                     <i class="fas fa-cloud-upload-alt fa-2x"></i>
                     <span class="block font-normal text-gray-400"
@@ -600,7 +653,6 @@
                   @change="changeFile($event)"
                   ref="file"
                   type="file"
-
                   class="w-full h-full opacity-0"
                   multiple
                   name=""
@@ -848,7 +900,7 @@ export default {
       accionReponse: null,
       dragOver: false,
       prueba: false,
-      $inertia : this.$inertia
+      $inertia: this.$inertia,
     };
   },
 
@@ -988,9 +1040,11 @@ export default {
         }
       );
     },
-    changeFile($event){
-        this.dragOver = false;
-        this.updateSolicitudForm.file = this.updateSolicitudForm.file.concat(Array.from($event.target.files));
+    changeFile($event) {
+      this.dragOver = false;
+      this.updateSolicitudForm.file = this.updateSolicitudForm.file.concat(
+        Array.from($event.target.files)
+      );
     },
     firmarSolicitud(estado_id) {
       this.createDesembolsarForm.solicitud_estado_id = estado_id;
@@ -1021,7 +1075,6 @@ export default {
               "Continua con la informacion socioeconomica",
               "success"
             );
-
           },
           onError: () => {
             this.$loading(false);
