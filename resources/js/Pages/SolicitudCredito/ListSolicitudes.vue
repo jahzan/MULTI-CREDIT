@@ -387,7 +387,7 @@
       <!-- //Seccion de la Listado Table -->
 
       <!-- modal mostrar solicitud -->
-      <jet-dialog-modal
+      <jet-dialog-modal-pdf
         :show="modalShowSolicitud"
         class="max-h-screen"
         maxWidth="5xl"
@@ -417,53 +417,59 @@
                 </span>
               </jet-secondary-button>
             </div>
-            <div class="flex justify-end w-full my-auto md:w-2/3">
-              <jet-danger-button
-                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
-                @click.native="showModalResponseSolicitud(4)"
-                v-if="$inertia.page.props.permissions.solicitud_rechazar"
-              >
-                <span class="mx-auto text-sm">
-                  <i class="hidden md:inline fas fa-times fa-lg"></i>
-                  Rechazar
-                </span>
-              </jet-danger-button>
+            <div class="flex flex-wrap justify-end w-full my-auto md:w-2/3">
+                <div class="flex w-full md:w-auto">
+                    <jet-danger-button
+                        class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 lg:w-auto"
+                        @click.native="showModalResponseSolicitud(4)"
+                        v-if="$inertia.page.props.permissions.solicitud_rechazar"
+                    >
+                        <span class="mx-auto text-xs md:text-sm">
+                        <i class="hidden lg:inline fas fa-times fa-lg"></i>
+                        Rechazar
+                        </span>
+                    </jet-danger-button>
 
-              <jet-success-button
-                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
-                @click.native="showModalResponseSolicitud(3)"
-                v-if="$inertia.page.props.permissions.solicitud_aprobar"
-              >
-                <span class="mx-auto text-sm lg:text-lg">
-                  <i class="hidden md:inline fas fa-check"></i>
-                  Aprobar
-                </span>
-              </jet-success-button>
+                    <jet-success-button
+                        class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 lg:w-auto"
+                        @click.native="showModalResponseSolicitud(3)"
+                        v-if="$inertia.page.props.permissions.solicitud_aprobar"
+                    >
+                        <span class="mx-auto text-xs md:text-sm lg:text-lg">
+                        <i class="hidden lg:inline fas fa-check"></i>
+                        Aprobar
+                        </span>
+                    </jet-success-button>
+                </div>
+                <div class="flex w-full md:w-auto">
 
-              <jet-warning-button
-                class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 sm:w-auto sm:mx-auto"
-                @click.native="showModalFirmaSolicitud(2)"
-                v-if="$inertia.page.props.permissions.solicitud_anular"
-              >
-                <span class="mx-auto text-sm">
-                  <i class="hidden md:inline fas fa-exclamation-circle"></i>
-                  Anular
-                </span>
-              </jet-warning-button>
+                    <jet-warning-button
+                        class="w-2/4 mx-1 my-2 sm:float-left sm:mr-2 lg:w-auto"
+                        @click.native="showModalFirmaSolicitud(2)"
+                        v-if="$inertia.page.props.permissions.solicitud_anular"
+                    >
+                        <span class="mx-auto text-sm">
+                        <i class="hidden lg:inline fas fa-exclamation-circle"></i>
+                        Anular
+                        </span>
+                    </jet-warning-button>
 
-              <jet-button
-                v-if="
-                  updateSolicitudForm.solicitud_estado_id === 3 &&
-                  $inertia.page.props.permissions.solicitud_firmar
-                "
-                class="w-2/4 mx-1 my-2 sm:float-left sm:w-auto sm:mx-auto"
-                @click.native="showModalFirmaSolicitud(2)"
-              >
-                <span class="text-sm lg:text-lg">
-                  <i class="hidden md:inline fas fa-file-signature"></i>
-                  Desembolso
-                </span>
-              </jet-button>
+                    <jet-button
+                        v-if="
+                        updateSolicitudForm.solicitud_estado_id === 3 &&
+                        $inertia.page.props.permissions.solicitud_firmar
+                        "
+                        class="w-2/4 mx-1 my-2 sm:float-left lg:w-auto "
+                        @click.native="showModalFirmaSolicitud(2)"
+                    >
+                        <span class="text-sm lg:text-lg">
+                        <i class="hidden lg:inline fas fa-file-signature"></i>
+                        Desembolso
+                        </span>
+                    </jet-button>
+                </div>
+
+
             </div>
 
             <!-- <div class="flex float-right">flex justify-end my-auto md:w-2/3 -->
@@ -516,7 +522,7 @@
             <!-- </div> -->
           </div>
         </template>
-      </jet-dialog-modal>
+      </jet-dialog-modal-pdf>
       <!--// modal mostrar solicitud -->
 
       <!-- modal respuesta solicitud -->
@@ -799,6 +805,7 @@ import VueCurrencyInput from "vue-currency-input";
 import Paginator from "../../Components/Paginator";
 import JetDropdownFilter from "@/Jetstream/DropdownFilter";
 import JetDialogModal from "@/Jetstream/DialogModal";
+import JetDialogModalPdf from "@/Jetstream/DialogModalPdf";
 import JetSelect from "../../Components/Select";
 import JetDropdownLink from "@/Jetstream/DropdownLink";
 import Push from "push.js";
@@ -829,6 +836,7 @@ export default {
     JetDropdownLink,
     JetSelect,
     JetDialogModal,
+    JetDialogModalPdf,
     JetDangerButton,
     VuePdfApp,
     PSPDFKitContainer

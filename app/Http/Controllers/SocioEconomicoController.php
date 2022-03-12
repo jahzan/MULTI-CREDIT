@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\AfterCreateSoeconomico;
 use App\Models\Ciudad;
 use App\Models\Departamento;
 use App\Models\SocioEconimico;
@@ -55,7 +56,7 @@ class SocioEconomicoController extends Controller
             'tipoVivienda'                       => 'required',           //campo requerido
             'departamento'                       => 'required',           //campo requerido
             'ciudad'                             => 'required',           //campo requerido
-            'direccion'                          => 'required',           //campo requerido 
+            'direccion'                          => 'required',           //campo requerido
             'nivelAcademico'                     => 'required',           //campo requerido
             'estadoLaboral'                      => 'required',           //campo requerido
             'pensionado'                         => 'required',           //campo requerido
@@ -83,8 +84,9 @@ class SocioEconomicoController extends Controller
             'gastos'                => $request->gastos,
             'solicitud_id'          => $request->idSolicitud
         ]);
+        event(new AfterCreateSoeconomico($socioEconomico));
         return Redirect::route('referencia.index',['id_solicitud'=>$request->idSolicitud]);
-        $pdf = PDF::loadView('Doc.socioEconomico', $socioEconomico);
+
     }
 
     /**

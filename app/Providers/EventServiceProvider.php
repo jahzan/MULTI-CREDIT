@@ -7,12 +7,14 @@ use App\Events\CreateVerifyOtp;
 use App\Events\VerifyOtpSened;
 use App\Events\BeforeCreateDesembolso;
 use App\Events\AfterCreateSolicitud;
+use App\Events\AfterCreateSoeconomico;
 use App\Events\AfterCreateStore;
 use App\Events\CreateDirUnique as CreateDirUniqueEvent;
 use App\Listeners\SignDocument;
 use App\Listeners\EviarOtp;
 use App\Listeners\VerificarOtp;
 use App\Listeners\CreateUser;
+use App\Listeners\SocioeconomicoPdf;
 use App\Listeners\CreateDirUnique as CreateDirUniqueListener;
 use App\Listeners\SendDocuments;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -30,6 +32,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         AfterCreateSolicitud::class =>[
             SendDocuments::class
+        ],
+        AfterCreateSoeconomico::class =>[
+            SocioeconomicoPdf::class
         ],
         AfterCreateStore::class =>[
             CreateUser::class

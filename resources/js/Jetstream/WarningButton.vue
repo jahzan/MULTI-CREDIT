@@ -1,7 +1,24 @@
 <template>
   <button
     :type="type"
-    class="items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-yellow-500 border border-yellow-500 rounded-md  hover:border-yellow-300 hover:bg-yellow-700 active:bg-yellow-900 focus:outline-none focus:border-yellow-900 focus:shadow-outline-yellow"
+    class="
+      items-center
+      px-4
+      py-2
+      text-xs
+      font-semibold
+      text-white
+      uppercase
+      transition
+      duration-150
+      ease-in-out
+      bg-yellow-500
+      border border-yellow-500
+      rounded-md
+      hover:border-yellow-300 hover:bg-yellow-700
+      active:bg-yellow-900
+      focus:outline-none focus:border-yellow-900 focus:shadow-outline-yellow
+    "
   >
     <slot></slot>
   </button>

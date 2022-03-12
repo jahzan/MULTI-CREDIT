@@ -294,14 +294,20 @@ class SolicitudController extends Controller
      */
     public function update(Request $request, Solicitud $solicitud)
     {
+        // dd($request->file[0]->getClientOriginalName());
         //estudio de credito
+        //dd("public/solicitud/1090368410/10-February-2022/a9fee054-7598-40fb-8232-b2c8058701da/Anexos/Document (7).pdf \n "."public/".$solicitud->path_solicitud."Anexos/".$request->file[0]->getClientOriginalName());
+
         if($request->solicitud_estado_id == 3 || $request->solicitud_estado_id == 4){
             $files = $request->file;//('file')[0]->store("public/".$solicitud->path_solicitud."Anexos"));
             $datosEstudio = $request->only("solicitud_estado_id","valor", "descripcion");
             $datosEstudio["solicitud_id"] = $request->id;
             $estudioCredito = EstudioCredito::create($datosEstudio);
             foreach ($files as $file) {
-                $anexo = $file->store("public/".$solicitud->path_solicitud."Anexos");
+                if(Storage::exists("public/".$solicitud->path_solicitud."Anexos".$file->getClientOriginalName())){
+
+                    $anexo = $file->storeAs("public/".$solicitud->path_solicitud."Anexos",$file->getClientOriginalName().'(1)');
+                }
                  EstudioCreditoAnexo::create([
                     'estudio_credito_id'    => $estudioCredito->id,
                     'anexo'                 => $anexo,
