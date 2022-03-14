@@ -893,7 +893,7 @@ export default {
       this.modalFirmaSolicitud = false;
     },
     showModalShowSolicitud(solicitud) {
-      this.pdf = "storage/" + solicitud.path_solicitud + "/solicitud.pdf"; //ruta delos archivos
+      this.pdf = "storage/" + solicitud.path_solicitud + "/index.pdf"; //ruta delos archivos
       this.updateSolicitudForm.id = solicitud.id; //
       this.createDesembolsarForm.solicitud_id = solicitud.id;
       this.createDesembolsarForm.id = solicitud.id;
